@@ -1,18 +1,14 @@
-# frozen_string_literal: true
-
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.2.2'
-gem 'active_model_serializers', '~> 0.10.13'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.6'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem 'bcrypt'
-gem 'cancancan'
-gem 'jwt'
 gem 'sprockets-rails'
+
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
 
@@ -29,10 +25,7 @@ gem 'turbo-rails'
 gem 'stimulus-rails'
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem 'bootstrap', '~> 5.0.2'
 gem 'jbuilder'
-gem 'jquery-rails'
-gem 'rails-controller-testing'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
@@ -49,11 +42,17 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
+gem 'devise'
 # Use Sass to process CSS
 # gem "sassc-rails"
-
+gem 'letter_opener'
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
+gem 'cancancan'
+
+gem 'jwt'
+
+gem 'active_model_serializers'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -62,8 +61,8 @@ end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem 'letter_opener'
   gem 'web-console'
+
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
@@ -74,11 +73,10 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
+  gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
 
-gem 'devise', '~> 4.9'
-
-gem 'rswag'
+gem 'rubocop', '>= 1.0', '< 2.0'
