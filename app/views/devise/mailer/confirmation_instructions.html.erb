@@ -1,5 +1,10 @@
-<p>Welcome <%= @email %>!</p>
-
-<p>You can confirm your account email through the link below:</p>
-
+<p>Hello! <%= @email %>!</p>
+<p>Welcome to MealTown, where culinary wonders await you! 🎉
+  We are thrilled to have you join our community of food enthusiasts and embark on a delightful journey of flavor and inspiration. Your account is almost ready, and we can't wait for you to start exploring our vast collection of delectable recipes.
+  To confirm your account and set sail on your culinary adventure, please click on the link below:
+</p>
 <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p>Once you've confirmed your account, you'll gain access to a world of mouthwatering recipes from around the globe. Our platform offers a seamless and enjoyable experience for both seasoned cooks and beginners alike. Whether you're searching for a quick weeknight dinner idea or looking to impress guests with a gourmet masterpiece, MealTown has got you covered!</p>
+<p>Happy cooking and bon appétit! </p>
+<p>Warm regards,</p>
+<p>The MealTown Team 🍽️</p>
