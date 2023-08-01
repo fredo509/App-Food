@@ -3,19 +3,38 @@
   <head>
     <title>Trading Forum</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= turbo_include_tags %>
   </head>
   <body>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      <div id="sign_out">
-      <% if user_signed_in? %>
-          <%= button_to "Sign out", destroy_user_session_path, :method => :delete, class: "btn" %>
+    <div class ="layout-errors">
+      <% if alert.present? || notice.present? %>
+        <div class="alerts">
+          <%= alert %>
+          <%= notice %>
+        </div>
       <% end %>
-      </div>
+    </div>
+    <% if user_signed_in? %>
+      <% puts '@@@@@@@@@@@@@@@@@@@@'  %>
+      <% puts current_user.name %>
+      <% puts '@@@@@@@@@@@@@@@@@@@@'  %>
+    <% else  %>
+      <% puts '@@@@@@@@@@@@@@@@@@@@'  %>
+      <% puts 'No user signed in' %>
+      <% puts '@@@@@@@@@@@@@@@@@@@@'  %>
+    <% end %>
+    <div id="sign_out">
+      <% if user_signed_in? %>
+        <%= button_to "Sign out", destroy_user_session_path, :method => :get, class: "btn" %>
+        <h2> <%= current_user.name %> </h2>
+      <% else  %>
+        <%= link_to "Sign in", new_user_session_path, class: "btn", data: { turbo: false }  %>
+        <%= link_to "Sign up", new_user_registration_path, class: "btn", data: { turbo: false }  %>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>

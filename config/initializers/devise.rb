@@ -1,4 +1,4 @@
-# frozen_string_literal: true 
+# frozen_string_literal: true
 
 # Assuming you have not yet modified this file, each configuration option below
 # is set to its default value. Note that some are commented out while others
@@ -14,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '76a4873a728c90e1e64fdcaf27595228208829e334be7f2c406028403db6fa86e3ff887eef6b56f422d0c16e80a9035890e44f38a6856433b6e2bd5c483b3438'
+  # config.secret_key = '2e5642ec3bc5546a46cd4ee13f7358c2d964b1bbb8c046dae722eada52d64e72c18426503967eefa2baecc042ab370a57a465d846396e890a311cd19f1700063'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -24,7 +24,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'secure-automate@mealtown.com'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -46,7 +46,7 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-  config.authentication_keys = [:username]
+  # config.authentication_keys = [:email]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -126,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '64c415da3e2e55d979186141034ff419600c6a36ecb1bf231046fffdd8b842c35fb0b00c03cb64528b1d0ed46561527a525fbedf6386f78e10833c9c921a221c'
+  # config.pepper = '3d7cee3f2857ac768aecffabead8dee8094d65d0aed3d2e49351c0be8f9052ab046c01992e6d7160645b21d20aa0732a7b5fced9f5ff874ab26eb59dc2896ea1'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -224,7 +224,7 @@ Devise.setup do |config|
   # Time interval you can reset your password with a reset password key.
   # Don't put a too small interval or your users won't have the time to
   # change their passwords.
-  config.reset_password_within = 6.hours
+  config.reset_password_within = 30.minutes
 
   # When set to false, does not sign a user in automatically after their password is
   # reset. Defaults to true, so a user is signed in automatically after a reset.
@@ -248,7 +248,7 @@ Devise.setup do |config|
 
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes (usually :user).
-  config.default_scope = :users
+  # config.default_scope = :user
 
   # Set this configuration to false if you want /users/sign_out to sign out
   # only the current scope. By default, Devise signs out all scopes.
@@ -266,7 +266,7 @@ Devise.setup do |config|
   # config.navigational_formats = ['*/*', :html, :turbo_stream]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
-  config.sign_out_via = :delete
+  config.sign_out_via = :get
 
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
