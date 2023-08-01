@@ -26,13 +26,14 @@
       <% puts 'No user signed in' %>
       <% puts '@@@@@@@@@@@@@@@@@@@@'  %>
     <% end %>
-    <div id="sign_out">
+    <div class="layouts-application-navbar">
       <% if user_signed_in? %>
         <%= button_to "Sign out", destroy_user_session_path, :method => :get, class: "btn" %>
+        <%= link_to "Config", edit_user_path(current_user.id) %>
         <h2> <%= current_user.name %> </h2>
       <% else  %>
-        <%= link_to "Sign in", new_user_session_path, class: "btn", data: { turbo: false }  %>
-        <%= link_to "Sign up", new_user_registration_path, class: "btn", data: { turbo: false }  %>
+        <%= link_to "Sign in", new_user_session_path, class: "btn" %>
+        <%= link_to "Sign up", new_user_registration_path, class: "btn" %>
       <% end %>
     </div>
     <%= yield %>
