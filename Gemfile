@@ -6,6 +6,9 @@ ruby '3.2.2'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.6'
 
+# Rubocop Linters
+gem 'rubocop', '>= 1.0', '< 2.0'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
 
@@ -24,8 +27,17 @@ gem 'turbo-rails'
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem 'stimulus-rails'
 
+# Hotwire's real-time model updates
+gem 'hotwire-rails'
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
+
+gem 'erb-formatter'
+
+gem 'kaminari'
+
+gem 'rails-ujs'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
@@ -42,15 +54,11 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
-gem 'devise'
 # Use Sass to process CSS
 # gem "sassc-rails"
-gem 'letter_opener'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
-gem 'cancancan'
-
-gem 'active_model_serializers'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -77,4 +85,9 @@ group :test do
   gem 'webdrivers'
 end
 
-gem 'rubocop', '>= 1.0', '< 2.0'
+gem 'active_model_serializers'
+gem 'cancancan'
+gem 'devise', '~> 4.9'
+gem 'jwt'
+gem 'solargraph'
+gem 'letter_opener'

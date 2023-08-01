@@ -6,7 +6,6 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= javascript_importmap_tags %>
     <%= turbo_include_tags %>
   </head>
   <body>
@@ -35,8 +34,8 @@
         <%= button_to "Sign out", destroy_user_session_path, :method => :get, class: "btn" %>
         <h2> <%= current_user.name %> </h2>
       <% else  %>
-        <%= link_to "Sign in", new_user_session_path, class: "btn" %>
-        <%= link_to "Sign up", new_user_registration_path, class: "btn" %>
+        <%= link_to "Sign in", new_user_session_path, class: "btn", data: { turbo: false }  %>
+        <%= link_to "Sign up", new_user_registration_path, class: "btn", data: { turbo: false }  %>
       <% end %>
     </div>
     <%= yield %>
