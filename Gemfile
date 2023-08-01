@@ -50,8 +50,6 @@ gem 'letter_opener'
 # gem "image_processing", "~> 1.2"
 gem 'cancancan'
 
-gem 'jwt'
-
 gem 'active_model_serializers'
 
 group :development, :test do

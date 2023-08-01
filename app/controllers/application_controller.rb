@@ -1,5 +1,4 @@
-# frozen_string_literal: true
-
+# All other controllers should inherit from this class.
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   protect_from_forgery with: :exception
@@ -13,7 +12,6 @@ class ApplicationController < ActionController::Base
 
     devise_parameter_sanitizer.permit(:account_update) do |u|
       u.permit(:name, :email, :password, :current_password, :role)
-
     end
   end
 end

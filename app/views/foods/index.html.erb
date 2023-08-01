@@ -1,0 +1,12 @@
+<%= stylesheet_link_tag 'foods' %>
+<h1> testing food </h1>
+<% if Food.count == 0  %>
+  <p> No food found </p>
+<% else %>
+  <% @foods.each do |food| %>
+    <p> <%= food.name %> </p>
+    <p> <%= food.measurement_unit %> </p>
+    <p> <%= food.price %>$ </p>
+  <% end  %>
+<% end %>
+<%= link_to 'add your favorite food', new_food_path  %>
