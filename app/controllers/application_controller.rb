@@ -1,22 +1,19 @@
 # frozen_string_literal: true
 
-class ApplicationController < ActionController::API
-  # protect_from_forgery with: :exception
+class ApplicationController < ActionController::Base
   before_action :authenticate_user!
-  before_action :authenticate_request
-  before_action :update_allowed_parameters, if: :devise_controller?
+  protect_from_forgery with: :exception
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  load_and_authorize_resource unless: :devise_controller?
 
   protected
 
-  def update_allowed_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name username bio email password])
-    devise_parameter_sanitizer.permit(:account_update, keys: %i[name username bio email password])
-  end
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :email, :password, :role) }
 
-  def authenticate_request
-    header = request.headers['Authorization']
-    header = header.split(' ').last if header
-    decoded = jwt_decode(header)
-    @current_user = User.find(decoded[:user_id])
+    devise_parameter_sanitizer.permit(:account_update) do |u|
+      u.permit(:name, :email, :password, :current_password, :role)
+
+    end
   end
 end
