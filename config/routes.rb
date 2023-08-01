@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :recipes
-    resources :inventories
+    resources :inventories, only: %i[index show]
   end
 
   resources :foods, only: %i[index show new create edit update destroy]
