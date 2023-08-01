@@ -1,3 +1,68 @@
-.class {
-  background-color: red;
+.foods-index-cont {
+  height: 100%;
+  display: grid;
+  width: 100%;
+  max-width: 55rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: 0.25fr 1fr 0.25fr;
+  margin: 0 auto;
+}
+
+.foods-index-create {
+  background-color: rgb(248, 248, 248);
+  padding: 0.25rem 0.5rem;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.foods-index-create:hover {
+  cursor: pointer;
+  filter: invert(1);
+}
+
+.foods-index-options {
+  display: flex;
+  gap: 0.25rem;
+  width: fit-content;
+  justify-self: flex-end;
+  align-self: flex-end;
+  align-items: center;
+}
+
+.foods-index {
+  background-color: grey;
+  width: 100%;
+  padding: 1rem;
+  justify-self: center;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.foods-index-info {
+  display: grid;
+  grid-auto-rows: auto;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.foods-index-info:nth-child(odd) {
+  background-color: rgb(187, 187, 187);
+}
+
+.foods-index-info:nth-child(even) {
+  background-color: rgb(230, 230, 230);
+}
+
+.food-title,
+.food-name,
+.food-measurement,
+.food-price,
+.food-delete {
+  text-align: center;
 }

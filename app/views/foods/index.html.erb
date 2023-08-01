@@ -1,17 +1,46 @@
 <%= stylesheet_link_tag 'foods' %>
 <div class="foods-index-cont">
-  <h1> testing food </h1>
-  <%= link_to 'add your favorite food', new_food_path  %>
-  <% if Food.count == 0  %>
-    <p> No food yet... </p>
-  <% else %>
-    <% @foods.each do |food| %>
-      <% if can?(:destroy, food) %>
-        <%= button_to "Delete", food_path(food.id), method: :delete, class: "btn-delete" %>
-      <% end %>
-      <p> <%= food.name %> </p>
-      <p> <%= food.measurement_unit %> </p>
-      <p> <%= food.price %>$ </p>
+  <div class="foods-index-options">
+    <% if can?(:create, Food)  %>
+      <%= link_to 'Add Food', new_food_path, class: 'foods-index-create'  %>
+    <% else %>
+      <%= link_to 'Create', new_user_registration_path, class: 'foods-index-create'  %>
+      <p>or</p>
+      <%= link_to 'log in', new_user_session_path, class: 'foods-index-create'  %>
+      <p>to an account to add more food!</p>
     <% end  %>
-  <% end %>
+  </div>
+  <div class="foods-index">
+    <% if Food.count == 0  %>
+      <div class="foods-index-info">
+        <p class="foods-title"> No food yet... </p>
+      </div>
+    <% else %>
+      <div class="foods-index-info">
+        <h3 class="food-title">Food</h3>
+        <h3 class="food-title">Measurement Unit</h3>
+        <h3 class="food-title">Unit Price</h3>
+        <% if can?(:destroy, Food)  %>
+          <style>
+            .foods-index-info{ grid-template-columns: repeat(4, 1fr) }
+          </style>
+          <h3 class="food-title">Actions</h3>
+        <% else %>
+          <style>
+            .foods-index-info{ grid-template-columns: repeat(3, 1fr) }
+          </style>
+        <% end %>
+      </div>
+      <% @foods.each do |food| %>
+        <div class="foods-index-info">
+          <p class="food-name"> <%= food.name %> </p>
+          <p class="food-measurement"> <%= food.measurement_unit %> </p>
+          <p class="food-price"> <%= food.price %>$ </p>
+          <% if can?(:destroy, food) %>
+            <%= button_to "Delete", food_path(food.id), method: :delete, class: 'food-delete' %>
+          <% end %>
+        </div>
+      <% end  %>
+    <% end %>
+  </div>
 </div>
