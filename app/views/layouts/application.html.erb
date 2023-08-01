@@ -28,12 +28,17 @@
     <% end %>
     <div class="layouts-application-navbar">
       <% if user_signed_in? %>
-        <%= button_to "Sign out", destroy_user_session_path, :method => :get, class: "btn" %>
-        <%= link_to "Config", edit_user_path(current_user.id) %>
-        <h2> <%= current_user.name %> </h2>
+        <%= link_to current_user.name, foods_path %>
+        <div class="layouts-application-config">
+          <%= link_to 'config', edit_user_registration_path, class: 'shared-bar-btn', data: { turbo: false } %>
+          <%= button_to "Sign out", destroy_user_session_path, :method => :get, class: "btn" %>
+        </div>
       <% else  %>
-        <%= link_to "Sign in", new_user_session_path, class: "btn" %>
-        <%= link_to "Sign up", new_user_registration_path, class: "btn" %>
+        <%= link_to "Home", foods_path %>
+        <div class="layouts-application-config">
+          <%= link_to "Sign in", new_user_session_path, class: "btn" %>
+          <%= link_to "Sign up", new_user_registration_path, class: "btn" %>
+        </div>
       <% end %>
     </div>
     <%= yield %>

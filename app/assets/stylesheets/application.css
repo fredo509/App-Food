@@ -24,4 +24,41 @@
   box-sizing: border-box;
 }
 
+*:visited,
+*:link {
+  text-decoration: none;
+  color: black;
+}
+
+body {
+  padding: 3rem 2rem;
+  height: 100vh;
+  overflow-y: hidden;
+  font-family: monospace;
+}
+
+.button_to {
+  text-align: center;
+}
+
 /* ------- Normalization ------- */
+
+/* ------- Navbar ------- */
+
+.layouts-application-navbar {
+  display: flex;
+  width: 100vw;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.377);
+  top: 0;
+  left: 0;
+  justify-content: space-between;
+  padding: 0.5rem 2rem;
+}
+
+.layouts-application-config {
+  display: flex;
+  gap: 1rem;
+}
+
+/* ------- Navbar ------- */
