@@ -6,6 +6,7 @@ class FoodInventoriesController < ApplicationController
   
     def new
       @food_inventory = FoodInventory.new
+      @inventory = Inventory.find(params[:inventory_id])
     end
   
     def create
