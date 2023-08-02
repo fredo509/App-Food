@@ -7,10 +7,9 @@ Rails.application.routes.draw do
 
   root to: 'foods#index'
 
-  resources :users do
-    resources :recipes
-    resources :inventories
-  end
-
+  resources :users 
+  resources :recipes
+  resources :inventories
   resources :foods, only: %i[index show new create edit update destroy]
+  get '/shopping_lists', to: 'shopping_lists#show'
 end
