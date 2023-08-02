@@ -3,9 +3,9 @@ class Ability
 
   def initialize(user)
     user ||= User.new
-    can :read, :all
-    can :manage, :all if user.role == 'admin'
 
+    can :read, :all
+    can :manage, Recipe, public: true
     return unless user.role == 'user'
 
     can :create, Food
