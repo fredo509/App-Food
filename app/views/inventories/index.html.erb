@@ -4,7 +4,12 @@
 <div class="inventories-index-cont">
   <% @inventories.each do |inventory| %>
     <div class="inventory-box-cont">
-    <%= link_to inventory.name, inventory_path(id: inventory.id), class: 'inventory-name' %>
+      <div class="inventory-box-button">
+        <%= link_to inventory.name, inventory_path(inventory), class: 'inventory-name' %>
+        <% if can?(:destroy, inventory) %>
+          <%= button_to "Delete", inventory_path(inventory), method: :delete, class: 'inventory-delete' %>
+        <% end %>
+      </div>
       <p class="inventory-desc">lorem ipso iure</p>
     </div>
   <% end %>
