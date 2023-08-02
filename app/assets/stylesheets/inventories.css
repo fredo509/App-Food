@@ -3,8 +3,8 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center; 
-  align-items: center; 
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -31,8 +31,8 @@
 .btn-food-inventory {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #c0c3c5; 
+  background-color: #c0c3c5;
   color: #fff;
-  text-decoration: none; 
-  border-radius: 5px; 
+  text-decoration: none;
+  border-radius: 5px;
 }
