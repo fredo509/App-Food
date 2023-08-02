@@ -12,8 +12,12 @@ class Ability
     can :create, Recipe, id: user.id
     can :create, Food
 
+    can :new, Inventory, user_id: user.id
+    can :create, Inventory, user_id: user.id
     can :destroy, Inventory, user_id: user.id
-    can :new, FoodInventory, inventory_id: user.id
-    can :create, FoodInventory, inventory_id: user.id
+
+    can :new, FoodInventory
+    can :create, FoodInventory
+    can :destroy, FoodInventory
   end
 end

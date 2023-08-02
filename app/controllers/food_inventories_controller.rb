@@ -20,9 +20,9 @@ class FoodInventoriesController < ApplicationController
   def destroy
     @food_inventory = FoodInventory.find(params[:id])
     if @food_inventory.destroy
-      redirect_to inventories_path, notice: 'Inventory was destroyed'
+      redirect_to inventory_path, notice: 'Inventory was destroyed'
     else
-      redirect_to inventories_path, alert: 'Inventory was not deleted'
+      redirect_to inventory_path, alert: 'Inventory was not deleted'
     end
   end
 

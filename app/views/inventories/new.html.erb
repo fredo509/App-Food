@@ -1,0 +1,13 @@
+<%= form_with(model: [current_user, Inventory.new], url: inventories_path, local: true) do |form| %>
+    <!-- Add the hidden field for inventory ID -->
+
+  
+  
+    <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, placeholder: "inventory name" %>
+  </div>
+  
+    <%= form.submit "Create  Inventory" %>
+  <% end %>
+  
