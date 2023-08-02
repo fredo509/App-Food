@@ -1,0 +1,13 @@
+<h1> details of inventory </h1>
+
+<h2> <%= @inventory.name %> </h2>
+<hr>
+
+<h1>Inventory Details</h1>
+<% @inventory_food_inventories.each do |food_inventory| %>
+  <p>Food Name: <%= food_inventory.food.name %></p>
+  <p>Food Quantity: <%= food_inventory.quantity %></p>
+<% end %>
+
+<%= link_to "Add Food Inventory", new_food_inventory_path(inventory_id: @inventory.id), class: "btn-food-inventory" %>
+
