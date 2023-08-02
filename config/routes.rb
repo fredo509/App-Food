@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   resources :inventories
   resources :food_inventories, only: %i[index new create destroy]
   resources :foods, only: %i[index show new create edit update destroy]
+  get '/shopping_lists', to: 'shopping_lists#show'
 end
