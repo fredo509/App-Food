@@ -6,7 +6,11 @@ class InventoriesController < ApplicationController
 
     def show
         @inventory = Inventory.find(params[:id])
+        # @inventory_food_name = @inventory.food_inventory.name
+        # @inventory_food_quantity = @inventory.food_inventory.quantity
+
     end
+
 
     def destroy
         @inventory = Inventory.find(params[:id])

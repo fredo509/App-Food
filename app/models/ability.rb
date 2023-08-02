@@ -13,5 +13,7 @@ class Ability
     can :create, Food
 
     can :destroy, Inventory, user_id: user.id
+    can :new, FoodInventory, inventory_id: user.id
+    can :create, FoodInventory, inventory_id: user.id
   end
 end

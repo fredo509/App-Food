@@ -1,3 +1,10 @@
 <h1> details of inventory </h1>
 
-<p> <%= @inventory.name %> </p>
+<h2> <%= @inventory.name %> </h2>
+<hr>
+
+<h1>Inventory Details</h1>
+<p>Food Name: <%= @inventory_food_name %></p>
+<p>Food Quantity: <%= @inventory_food_quantity %></p>
+
+<%= link_to "create food inventory", new_food_inventory_path, class: "btn-food-inventory" %>

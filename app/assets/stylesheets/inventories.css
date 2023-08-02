@@ -34,3 +34,13 @@
 .inventory-desc {
   margin: 5px;
 }
+
+.btn-food-inventory {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #c0c3c5; /* Blue color, change it as per your preference */
+    color: #fff; /* White text color */
+    text-decoration: none; /* Remove underline from the link */
+    border-radius: 5px; /* Rounded corners */
+  }
+  
