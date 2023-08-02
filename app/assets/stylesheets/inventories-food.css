@@ -1,3 +1,17 @@
+
+.inventory-details-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem;
+}
+
+.foodinventory{
+    width: 80%;
+}
+
 .foodsinventory-info{
     display: flex;
     justify-content: space-around;

@@ -7,7 +7,7 @@
 
 <h1>Inventory Details</h1>
 
-
+<div class="inventory-details-wrapper">
 <div class="foodinventory">
     <% if Food.count == 0  %>
       <div class="foodsinventory-info">
@@ -34,6 +34,7 @@
       <% end  %>
     <% end %>
   </div>
+</div>
 
 <%= link_to "Add Food Inventory", new_food_inventory_path(inventory_id: @inventory.id), class: "btn-food-inventory" %>
 
