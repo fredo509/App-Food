@@ -1,0 +1,11 @@
+<%= stylesheet_link_tag 'inventories' %>
+<h1>Inventory</h1>
+
+<div class="inventories-index-cont">
+  <% @inventories.each do |inventory| %>
+    <div class="inventory-box-cont">
+    <%= link_to inventory.name, inventory_path(id: inventory.id), class: 'inventory-name' %>
+      <p class="inventory-desc">lorem ipso iure</p>
+    </div>
+  <% end %>
+</div>

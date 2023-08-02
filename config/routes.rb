@@ -7,10 +7,9 @@ Rails.application.routes.draw do
 
   root to: 'foods#index'
 
-  resources :users do
-    resources :recipes
-    resources :inventories, only: %i[index show]
-  end
-
+  resources :users 
+  resources :users 
+  resources :recipes, only: %i[index show]
+  resources :inventories
   resources :foods, only: %i[index show new create edit update destroy]
 end
