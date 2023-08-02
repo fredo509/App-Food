@@ -1,0 +1,38 @@
+.inventories-index-cont {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; 
+  gap: 1rem;
+}
+
+.inventory-box-cont {
+  width: 63%;
+  height: 6rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: grey;
+}
+
+.inventory-box-button {
+  display: flex;
+  align-items: center;
+}
+
+.inventory-name,
+.inventory-desc {
+  margin: 5px;
+}
+
+.btn-food-inventory {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #c0c3c5; 
+  color: #fff;
+  text-decoration: none; 
+  border-radius: 5px; 
+}

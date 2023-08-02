@@ -1,0 +1,20 @@
+
+
+<h1>Form Food Inventory</h1>
+
+<%= form_with(model: [current_user, FoodInventory.new], url: food_inventories_path, local: true) do |form| %>
+  <!-- Add the hidden field for inventory ID -->
+  <%= form.hidden_field :inventory_id, value: @inventory.id %>
+
+  <div class="field">
+    <%= form.label :food_id, 'Select Food:' %>
+    <%= form.collection_select(:food_id, Food.all, :id, :name) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity %>
+  </div>
+
+  <%= form.submit "Create Food Inventory" %>
+<% end %>
