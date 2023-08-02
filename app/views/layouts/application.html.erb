@@ -31,7 +31,6 @@
         <%= link_to current_user.name, foods_path %>
         <div class="layouts-application-config">
           <%= link_to 'config', edit_user_registration_path, class: 'shared-bar-btn', data: { turbo: false } %>
-          <%= link_to 'Your recipes', user_recipes_path(current_user.id) %>
           <%= button_to "Sign out", destroy_user_session_path, :method => :get, class: "btn" %>
         </div>
       <% else  %>
