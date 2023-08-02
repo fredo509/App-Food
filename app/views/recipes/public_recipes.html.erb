@@ -1,0 +1,6 @@
+<h1> Public Recipes </h1>
+<% @public_recipes.map do |recipe| %>
+  <div class="recipe">
+    <h2><%= recipe.name %></h2>
+  </div>
+<% end %>

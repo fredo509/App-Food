@@ -1,0 +1,26 @@
+<!-- app/views/comments/new.html.erb -->
+<%= form_with(model: [current_user, Recipe.new], url: recipes_path, local: true) do |form| %>
+  <h1 class="recipes-form-title">New Recipe</h1>
+  <%= form.hidden_field :user_id, value: current_user.id %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, placeholder: "Recipe Name" %>
+  </div>
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description, placeholder: "Description" %>
+  </div>
+  <div class="field">
+    <%= form.label :preparation_time %>
+    <%= form.number_field :preparation_time, placeholder: "Preparation time" %>
+  </div>
+  <div class="field">
+    <%= form.label :cooking_time %>
+    <%= form.number_field :cooking_time, placeholder: "Cooking time" %>
+  </div>
+  <div class="field">
+    <%= form.label :public %>
+    <%= form.select :public, options_for_select([true, false]), {}, { placeholder: "Make this recipe public?" } %>
+  </div>
+  <%= form.submit 'Add recipe', class: "submit-btn" %>
+<% end %>

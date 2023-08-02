@@ -31,7 +31,7 @@
           </style>
         <% end %>
       </div>
-      <% @foods.each do |food| %>
+      <% @foods.map do |food| %>
         <div class="foods-index-info">
           <p class="food-name"> <%= food.name %> </p>
           <p class="food-measurement"> <%= food.measurement_unit %> </p>
