@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag 'foods' %>
+<%= stylesheet_link_tag 'food' %>
 <div class="foods-index-cont">
   <div class="foods-index-options">
     <% if can?(:create, Food)  %>
@@ -31,7 +31,7 @@
           </style>
         <% end %>
       </div>
-      <% @foods.map do |food| %>
+      <% @food.map do |food| %>
         <div class="foods-index-info">
           <p class="foods-name"> <%= food.name %> </p>
           <p class="foods-measurement"> <%= food.measurement_unit %> </p>

@@ -5,7 +5,12 @@
     <%= link_to 'Add the first', new_recipe_path %>
   <% else %>
     <div class="recipes-index">
-      <% @recipes.each do |recipe| %>
+      <%= link_to 'Add', new_recipe_path %>
+
+
+  <% if @my_recipes.any? %>
+
+      <% @my_recipes.map do |recipe| %>
         <div class="recipes-index-list">
           <div class="recipes-index-actions">
             <h2><%= recipe.name %></h2>
@@ -18,7 +23,22 @@
           </div>
           <p class="recipes-index-actions"><%= recipe.description %></p>
         </div>
+
+
+
+
+
+
       <% end %>
+
+    <% else %>
+
+    <h2> You don't have any recipe </h2>
+    
+  <% end %>
+
+
+
     </div>
   <% end %>
 </div>

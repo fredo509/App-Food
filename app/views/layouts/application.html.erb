@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Trading Forum</title>
+    <title>MealTown</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= csrf_meta_tags %>
@@ -37,6 +37,7 @@
       <% else  %>
         <%= link_to "Home", foods_path %>
         <div class="layouts-application-config">
+          <%= link_to "Recipes", public_recipes_path %>
           <%= link_to "Sign in", new_user_session_path, class: "btn" %>
           <%= link_to "Sign up", new_user_registration_path, class: "btn" %>
         </div>

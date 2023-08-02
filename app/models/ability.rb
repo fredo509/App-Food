@@ -4,13 +4,15 @@ class Ability
   def initialize(user)
     user ||= User.new
     can :read, :all
+    can :manage, Recipe, public: true
+    cannot :destroy, Recipe
+    cannot :create, Recipe
+
     can :manage, :all if user.role == 'admin'
 
     return unless user.role == 'user'
 
-    can :create, Food
-    can :destroy, Food
-    can :create, Recipe, user_id: user.id
-    can :destroy, Recipe, user_id: user.id
+    can :manage, Food
+    can :manage, Recipe, user_id: user.id
   end
 end

@@ -1,0 +1,22 @@
+<h1> test </h1>
+<%= link_to 'Add Ingredient', new_user_recipe_recipe_food_path(current_user.id, @recipe.id) %>
+
+recipe name: <%= @recipe.name %>
+</br>
+preparation time: <%= @recipe.preparation_time.to_i %> minutes
+</br>
+cooking time: <%= @recipe.cooking_time.to_i %> minutes
+</br>
+description: <%= @recipe.description %>
+</br>
+public: <%= @recipe.public.to_s %>
+</br>
+                    <% @recipe.recipe_food.map do |recipe_food| %>
+                    </br>
+                    ingredient:<%= recipe_food.food.name %>
+                    </br>
+                    quantity: <%= recipe_food.quantity %> <%= recipe_food.food.measurement_unit %>
+                    </br>
+                    price: <%= (recipe_food.quantity * recipe_food.food.price).to_i %> $
+                    
+                    <% end %>

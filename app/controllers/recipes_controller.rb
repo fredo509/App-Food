@@ -1,6 +1,15 @@
 class RecipesController < ApplicationController
   def index
     @recipes = Recipe.all
+    @my_recipes = Recipe.where(user_id: current_user.id)
+    @recipe_food = RecipeFood.all
+    @food = Food.all
+  end
+
+  def show
+    @recipes = Recipe.find(params[:id])
+    @recipe_food = RecipeFood.all
+    @food = Food.all
   end
 
   def new
@@ -23,6 +32,10 @@ class RecipesController < ApplicationController
     else
       redirect_to recipes_path, alert: 'Recipe was not destroyed.'
     end
+  end
+
+  def public_recipes
+    @public_recipes = Recipe.where(public: true)
   end
 
   private

@@ -4,14 +4,18 @@ Rails.application.routes.draw do
   # config/routes.rb
   devise_for :users
 
-
   root to: 'foods#index'
 
+  get 'public_recipes', to: 'recipes#public_recipes', as: 'public_recipes'
+
   resources :users  do
-  resources :recipes, only: %i[index show new create edit update destroy]
-  resources :inventories
-end
-resources :foods, only: %i[index show new create edit update destroy]
+    resources :recipes, only: %i[index show new create edit update destroy] do
+      resources :recipe_food, only: %i[new create destroy]
+    end
+    resources :inventories
+  end
+
+  resources :foods, only: %i[index show new create edit update destroy]
   resources :recipes, only: %i[index show new create edit update destroy]
 
 end

@@ -59,10 +59,10 @@
   background-color: rgb(230, 230, 230);
 }
 
-.food-title,
-.food-name,
-.food-measurement,
-.food-price,
-.food-delete {
+.foods-title,
+.foods-name,
+.foods-measurement,
+.foods-price,
+.foods-delete {
   text-align: center;
 }

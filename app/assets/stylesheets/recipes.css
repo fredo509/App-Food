@@ -40,6 +40,10 @@
   gap: 0.5rem;
 }
 
+.recipes-index-actions {
+  text-align: center;
+}
+
 .recipes-index-actions:nth-child(1) {
   width: 35%;
 }
