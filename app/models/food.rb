@@ -4,5 +4,5 @@ class Food < ApplicationRecord
   has_many :inventory_food
   has_many :inventories, through: :inventory_food
 
-  validates :price, numericality: { only_integer: true}
+  validates :price, numericality: { only_integer: true }
 end
