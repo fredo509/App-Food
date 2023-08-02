@@ -1,1 +1,20 @@
-<h1>testing form<h1>
+<% if user_signed_in? %>
+  <%= form_with(model: [current_user, RecipeFood.new], url: user_recipe_recipe_food_index_path(current_user.id), local: true) do |form| %>
+    <h1 class="comments-form-title">New Ingredient</h1>
+    <div class="field">
+
+      <div>
+        <%= form.label :quantity %>
+        <%= form.text_field :quantity, rows: 4, placeholder: "quantity" %>
+      </div>
+      <div>
+        <%= form.hidden_field :recipe_id, value: @recipe_id %> <!-- Add this line to set recipe_id -->
+        <%= form.label :food_id %>
+<%= form.collection_select(:food_id, Food.all, :id, :name) %>
+
+      </div>
+    </div>
+    <%= form.submit 'Add Ingredient', class: "submit-btn" %>
+    <%= link_to "go back", :back, class: 'shared-link go-back' %>
+  <% end %>
+<% end %>

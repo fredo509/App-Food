@@ -4,6 +4,7 @@
   width: 100%;
   max-width: 55rem;
   flex-direction: column;
+  align-content: center;
   justify-content: center;
   align-items: center;
   grid-template-columns: repeat(1, 1fr);
