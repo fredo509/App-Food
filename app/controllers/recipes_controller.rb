@@ -45,6 +45,31 @@ class RecipesController < ApplicationController
     @public_recipes = Recipe.where(public: true)
   end
 
+  def shopping_list
+
+
+    @recipes = Recipe.where(user_id: current_user.id)
+    @recipe_food = []  # Initialize the hash as an empty hash
+    @ingredient = []
+
+    @recipes.each do |recipe|
+      @recipe_food = RecipeFood.where(recipe_id: recipe.id)
+      @ingredient += Food.where(id: @recipe_food.pluck(:food_id))
+    end
+
+    @inventory = Inventory.where(user_id: current_user.id)
+    @food_inventory = []
+    @inventory_ingredient = []
+
+    @inventory.each do |inventory|
+      @food_inventory = FoodInventory.where(inventory_id: inventory.id)
+      @inventory_ingredient += Food.where(id: @food_inventory.pluck(:food_id))
+    end
+    
+    @food = Food.all
+
+  end
+
   private
 
   def recipe_params
