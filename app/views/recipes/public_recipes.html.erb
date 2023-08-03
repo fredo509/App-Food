@@ -1,0 +1,5 @@
+<h1>test</h1>
+<% @public_recipes.map do |recipe| %>
+  <li><%= recipe.name %></li>
+<% end %>
+<%= render partial: 'shared/back' %>

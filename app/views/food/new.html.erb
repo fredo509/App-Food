@@ -1,5 +1,5 @@
 <!-- app/views/comments/new.html.erb -->
-<%= form_with(model: [current_user, Food.new], url: foods_path, local: true) do |form| %>
+<%= form_with(model: [current_user, Food.new], url: new_food_path) do |form| %>
   <h1 class="foods-form-title">New Food</h1>
   <div class="field">
     <%= form.label :name %>
@@ -7,12 +7,11 @@
   </div>
   <div class="field">
     <%= form.label :measurement_unit %>
-    <%= form.select :measurement_unit, options_for_select(['Miligrams', 'Grams', 'Kilograms', 'Liters']), {}, { placeholder: "Select a Measurement Unit" } %>
+    <%= form.select :measurement_unit, options_for_select(['Miligrams', 'Grams', 'Kilograms']), {}, { placeholder: "Select a Measurement Unit" } %>
   </div>
   <div class="field">
     <%= form.label :price %>
     <%= form.number_field :price, placeholder: "Price" %>
   </div>
   <%= form.submit 'Add Food', class: "submit-btn" %>
-  <% puts logger.debug %>
 <% end %>
