@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   load_and_authorize_resource unless: :devise_controller?
 
+  def recipe_food
+    @recipe_food = RecipeFood.all
+  end
+
   protected
 
   def configure_permitted_parameters

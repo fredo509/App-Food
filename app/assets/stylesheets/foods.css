@@ -4,6 +4,7 @@
   width: 100%;
   max-width: 55rem;
   flex-direction: column;
+  align-content: center;
   justify-content: center;
   align-items: center;
   grid-template-columns: repeat(1, 1fr);
@@ -59,10 +60,10 @@
   background-color: rgb(230, 230, 230);
 }
 
-.food-title,
-.food-name,
-.food-measurement,
-.food-price,
-.food-delete {
+.foods-title,
+.foods-name,
+.foods-measurement,
+.foods-price,
+.foods-delete {
   text-align: center;
 }

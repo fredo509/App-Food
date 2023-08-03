@@ -1,9 +1,10 @@
+# app/models/food.rb
 class Food < ApplicationRecord
-  has_many :recipe_food
-  has_many :recipes, through: :recipe_food
-  has_many :inventory_food
-  has_many :inventories, through: :inventory_food
+  has_many :food_inventories
+  has_many :inventories, through: :food_inventories
 
-# recipes-list
+  has_many :recipe_foods
+  has_many :recipes, through: :recipe_foods
+
   validates :price, numericality: { only_integer: true }
 end
