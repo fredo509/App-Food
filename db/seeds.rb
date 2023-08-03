@@ -2,8 +2,8 @@
 
 #Users
 User.create!( name: "Admin", email: "admin@ruby.com", password: "asd123", confirmed_at: Time.now, role: "admin", )
-User.create!( name: "User A", email: "user-a@ruby.com", password: "asd123", confirmed_at: Time.now, )
-User.create!( name: "User B", email: "user-b@ruby.com", password: "asd123", confirmed_at: Time.now, )
+User.create!( name: "User A", email: "user-a@ruby.com", password: "asd123", confirmed_at: Time.now, role: "user", )
+User.create!( name: "User B", email: "user-b@ruby.com", password: "asd123", confirmed_at: Time.now, role: "user", )
 
 #Food
 Food.create!( name: "Banana", price: 2, measurement_unit: "grams",)

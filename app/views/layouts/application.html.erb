@@ -7,13 +7,15 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= turbo_include_tags %>
+ 
+
   </head>
   <body>
     <div class ="layout-errors">
       <% if alert.present? || notice.present? %>
         <div class="alerts">
-          <%= alert %>
           <%= notice %>
+          <%= alert %>
         </div>
       <% end %>
     </div>

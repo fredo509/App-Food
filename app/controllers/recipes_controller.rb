@@ -9,8 +9,13 @@ class RecipesController < ApplicationController
   def show
     @recipes = Recipe.find(params[:id])
     @recipe_food = RecipeFood.all
+    @actual_user = current_user
     @food = Food.all
-        @recipe_id = @recipe.id
+    @recipe_id = @recipe.id
+    @notice = params[:notice] if params[:notice]
+    return unless params[:alert]
+
+    @alert = params[:alert]
   end
 
   def new
@@ -22,7 +27,7 @@ class RecipesController < ApplicationController
     if @recipes.save
       redirect_to recipes_path, notice: 'Recipe was successfully created.'
     else
-      redirect_to new_recipe_path, alert: 'Recipe was not created.'
+      redirect_to new_recipe_path(current_user.id, @recipe.id), alert: 'Recipe was not created.'
     end
   end
 
