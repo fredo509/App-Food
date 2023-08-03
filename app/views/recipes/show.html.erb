@@ -1,13 +1,6 @@
-<h1> test </h1>
-
-
-
-  <%= link_to 'Add Ingredient', new_user_recipe_recipe_food_path(current_user.id, recipe_id: @recipe_id) %>
-
+<h1>recipe name: <%= @recipe.name %></h1>
 </br>
-
-
-recipe name: <%= @recipe.name %>
+<h2><%= link_to 'Add Ingredient', new_user_recipe_recipe_food_path(current_user.id, recipe_id: @recipe_id) %></h2>
 </br>
 preparation time: <%= @recipe.preparation_time.to_i %> minutes
 </br>
@@ -26,18 +19,13 @@ quantity: <%= recipe_food.quantity %> <%= recipe_food.food.measurement_unit %>
 price: <%= (recipe_food.quantity * recipe_food.food.price).to_i %> $
 </br>
 <%# button to delete using the requireds id (current user ID and current food item id) %>
+<h3><%= link_to 'Edit Recipe Food', edit_user_recipe_recipe_food_path(current_user, @recipe, recipe_food.id) %></h3>
 <%= button_to 'Delete', user_recipe_recipe_food_path(current_user.id, @recipe, recipe_food), method: :delete, turbo_confirm: 'Delete recipe?' %>
-<% puts '@@@@@@@@@@  @@@@@@@@@'  %>
-<% puts current_user.id %>
-<% puts @recipe.id %>
-<% puts recipe_food.id %>
-<% puts '@@@@@@@@@@  @@@@@@@@@'  %>
-<%= link_to 'Edit Recipe Food', edit_user_recipe_recipe_food_path(current_user, @recipe, recipe_food.id) %>
-
 
 
 
 
 <% end %>
+<%= render partial: 'shared/back' %>
 
 

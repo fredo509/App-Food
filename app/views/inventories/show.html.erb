@@ -1,14 +1,10 @@
 <%= stylesheet_link_tag 'inventories-food' %>
-
 <h1> details of inventory </h1>
-
 <h2> <%= @inventory.name %> </h2>
 <hr>
-
 <h1>Inventory Details</h1>
-
 <div class="inventory-details-wrapper">
-<div class="foodinventory">
+  <div class="foodinventory">
     <% if Food.count == 0  %>
       <div class="foodsinventory-info">
         <p class="foodinventory-title"> No food yet... </p>
@@ -18,25 +14,18 @@
         <h3 class="food-title">Food</h3>
         <h3 class="food-title">Quantity</h3>
         <h3 class="food-title">Action</h3>
-      
       </div>
       <% @inventory_food_inventories.each do |food_inventory| %>
         <div class="foods-index-info">
           <p class="foodInventory-name"> <%= food_inventory.food.name %></p>
           <p class="food-measurement"> <%= food_inventory.quantity %> </p>
-
           <% if can?(:destroy, food_inventory) %>
-          <%= button_to "Delete", user_inventory_food_inventory_path(current_user.id, @inventory.id, food_inventory.id), method: :delete, class: 'foodinventory-delete' %>
-        <% end %>
-
-
+            <%= button_to "Delete", user_inventory_food_inventory_path(current_user.id, @inventory.id, food_inventory.id), method: :delete, class: 'foodinventory-delete' %>
+          <% end %>
         </div>
       <% end  %>
     <% end %>
   </div>
 </div>
-
-
+<%= render partial: 'shared/back' %>
 <%= link_to "Add Food Inventory", new_user_inventory_food_inventory_path(current_user.id, @inventory.id), class: "btn-food-inventory" %>
-
-

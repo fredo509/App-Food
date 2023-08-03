@@ -1,6 +1,5 @@
 <%= stylesheet_link_tag 'inventories' %>
 <h1>Inventory</h1>
-
 <div class="inventories-index-cont">
   <% @inventories.each do |inventory| %>
     <div class="inventory-box-cont">
@@ -10,11 +9,9 @@
           <%= button_to "Delete", user_inventory_path(inventory.user, inventory), method: :delete, class: 'inventory-delete' %>
         <% end %>
       </div>
-      <p class="inventory-desc">lorem ipso iure</p>
+      <p class="inventory-desc"><%= inventory.description %></p>
     </div>
   <% end %>
 </div>
-
+<%= render partial: 'shared/back' %>
 <%= link_to "Add Inventory", new_user_inventory_path(@user), class: "btn-food-inventory" %>
-
-

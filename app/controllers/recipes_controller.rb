@@ -3,6 +3,7 @@ class RecipesController < ApplicationController
     @recipes = Recipe.all
     @my_recipes = Recipe.where(user_id: current_user.id)
     @recipe_food = RecipeFood.all
+    @this_recipe = RecipeFood.where(recipe_id: @recipe)
     @food = Food.all
   end
 

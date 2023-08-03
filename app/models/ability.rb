@@ -16,11 +16,10 @@ class Ability
     can :manage, RecipeFood, recipe: { user_id: user.id }
     can :create, Recipe
     can :create, RecipeFood
-    
+
     can :manage, Inventory, user_id: user.id
     can :create, Inventory
     can :manage, FoodInventory, inventory: { user_id: user.id }
     can :create, FoodInventory
-    
   end
 end
