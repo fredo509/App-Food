@@ -1,0 +1,20 @@
+<%= stylesheet_link_tag 'inventories' %>
+<h1>Inventory</h1>
+
+<div class="inventories-index-cont">
+  <% @inventories.each do |inventory| %>
+    <div class="inventory-box-cont">
+      <div class="inventory-box-button">
+        <%= link_to inventory.name, user_inventory_path(inventory.user, inventory), class: 'inventory-name' %>
+        <% if can?(:destroy, inventory) %>
+          <%= button_to "Delete", user_inventory_path(inventory.user, inventory), method: :delete, class: 'inventory-delete' %>
+        <% end %>
+      </div>
+      <p class="inventory-desc">lorem ipso iure</p>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "Add Inventory", new_user_inventory_path(@user), class: "btn-food-inventory" %>
+
+
