@@ -1,23 +1,25 @@
 class InventoriesController < ApplicationController
-  
     def index
-      @inventories = current_user.inventories
+      @user = User.find(params[:user_id])
+      @inventories = @user.inventories
     end
   
     def show
       @inventory = Inventory.find(params[:id])
-      @inventory_food_inventories = @inventory.food_inventory
+      @inventory_food_inventories = @inventory.food_inventories
     end
   
     def new
-      @inventory = Inventory.new
+      @user = User.find(params[:user_id])
+      @inventory = @user.inventories.new
     end
   
     def create
-      @inventory = current_user.inventories.new(inventory_params)
+      @user = User.find(params[:user_id])
+      @inventory = @user.inventories.new(inventory_params)
   
       if @inventory.save
-        redirect_to inventories_path, notice: 'Inventory was successfully created.'
+        redirect_to user_inventories_path(@user), notice: 'Inventory was successfully created.'
       else
         render :new
       end
@@ -25,10 +27,11 @@ class InventoriesController < ApplicationController
   
     def destroy
       @inventory = Inventory.find(params[:id])
+  
       if @inventory.destroy
-        redirect_to inventories_path, notice: 'Inventory was destroyed.'
+        redirect_to user_inventories_path(@inventory.user), notice: 'Inventory was destroyed.'
       else
-        redirect_to inventories_path, alert: 'Inventory was not deleted.'
+        redirect_to user_inventories_path(@inventory.user), alert: 'Inventory was not deleted.'
       end
     end
   

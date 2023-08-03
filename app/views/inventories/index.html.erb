@@ -5,9 +5,9 @@
   <% @inventories.each do |inventory| %>
     <div class="inventory-box-cont">
       <div class="inventory-box-button">
-        <%= link_to inventory.name, inventory_path(inventory), class: 'inventory-name' %>
+        <%= link_to inventory.name, user_inventory_path(inventory.user, inventory), class: 'inventory-name' %>
         <% if can?(:destroy, inventory) %>
-          <%= button_to "Delete", inventory_path(inventory), method: :delete, class: 'inventory-delete' %>
+          <%= button_to "Delete", user_inventory_path(inventory.user, inventory), method: :delete, class: 'inventory-delete' %>
         <% end %>
       </div>
       <p class="inventory-desc">lorem ipso iure</p>
@@ -15,8 +15,6 @@
   <% end %>
 </div>
 
-<%= link_to "Add Inventory", new_inventory_path, class: "btn-food-inventory" %>
-
-
+<%= link_to "Add Inventory", new_user_inventory_path(@user), class: "btn-food-inventory" %>
 
 

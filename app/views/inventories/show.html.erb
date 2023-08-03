@@ -26,7 +26,7 @@
           <p class="food-measurement"> <%= food_inventory.quantity %> </p>
 
           <% if can?(:destroy, food_inventory) %>
-             <%= button_to "Delete", food_inventory_path(food_inventory.id), method: :delete, class: 'foodinventory-delete' %>
+          <%= button_to "Delete", user_inventory_food_inventory_path(current_user.id, @inventory.id, food_inventory.id), method: :delete, class: 'foodinventory-delete' %>
         <% end %>
 
 
@@ -36,5 +36,5 @@
   </div>
 </div>
 
-<%= link_to "Add Food Inventory", new_food_inventory_path(inventory_id: @inventory.id), class: "btn-food-inventory" %>
+<%= link_to "Add Food Inventory", new_user_inventory_food_inventory_path(current_user.id, @inventory.id), class: "btn-food-inventory" %>
 

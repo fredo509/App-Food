@@ -2,7 +2,7 @@
 
 <h1>Form Food Inventory</h1>
 
-<%= form_with(model: [current_user, FoodInventory.new], url: food_inventories_path, local: true) do |form| %>
+<%= form_with(model: [current_user, Inventory.new], url: user_inventories_path(current_user), local: true) do |form| %>
   <!-- Add the hidden field for inventory ID -->
   <%= form.hidden_field :inventory_id, value: @inventory.id %>
 
