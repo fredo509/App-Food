@@ -1,5 +1,5 @@
 <!-- app/views/comments/new.html.erb -->
-<%= form_with(model: [current_user, Food.new], url: foods_path, local: true) do |form| %>
+<%= form_with(model: [current_user, Food.new], url: new_food_path) do |form| %>
   <h1 class="foods-form-title">New Food</h1>
   <div class="field">
     <%= form.label :name %>
@@ -14,5 +14,4 @@
     <%= form.number_field :price, placeholder: "Price" %>
   </div>
   <%= form.submit 'Add Food', class: "submit-btn" %>
-  <% puts logger.debug %>
 <% end %>

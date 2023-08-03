@@ -1,0 +1,43 @@
+<h1> test </h1>
+
+
+
+  <%= link_to 'Add Ingredient', new_user_recipe_recipe_food_path(current_user.id, recipe_id: @recipe_id) %>
+
+</br>
+
+
+recipe name: <%= @recipe.name %>
+</br>
+preparation time: <%= @recipe.preparation_time.to_i %> minutes
+</br>
+cooking time: <%= @recipe.cooking_time.to_i %> minutes
+</br>
+description: <%= @recipe.description %>
+</br>
+public: <%= @recipe.public.to_s %>
+</br>
+<% @recipe.recipe_food.map do |recipe_food| %>
+</br>
+ingredient:<%= recipe_food.food.name %>
+</br>
+quantity: <%= recipe_food.quantity %> <%= recipe_food.food.measurement_unit %>
+</br>
+price: <%= (recipe_food.quantity * recipe_food.food.price).to_i %> $
+</br>
+<%# button to delete using the requireds id (current user ID and current food item id) %>
+<%= button_to 'Delete', user_recipe_recipe_food_path(current_user.id, @recipe, recipe_food), method: :delete, turbo_confirm: 'Delete recipe?' %>
+<% puts '@@@@@@@@@@  @@@@@@@@@'  %>
+<% puts current_user.id %>
+<% puts @recipe.id %>
+<% puts recipe_food.id %>
+<% puts '@@@@@@@@@@  @@@@@@@@@'  %>
+<%= link_to 'Edit Recipe Food', edit_user_recipe_recipe_food_path(current_user, @recipe, recipe_food.id) %>
+
+
+
+
+
+<% end %>
+
+
