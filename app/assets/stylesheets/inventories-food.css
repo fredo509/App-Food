@@ -1,27 +1,24 @@
 
-.inventory-details-wrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    margin: 1rem;
+.inventory-details-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem;
 }
 
-.foodinventory{
-    width: 80%;
+.foodinventory {
+  width: 80%;
 }
 
-.foodsinventory-info{
-    display: flex;
-    justify-content: space-around;
-  
+.foodsinventory-info {
+  display: flex;
+  justify-content: space-around;
 }
 
-.foods-index-info{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-   
-   
+.foods-index-info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
