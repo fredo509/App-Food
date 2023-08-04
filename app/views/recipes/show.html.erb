@@ -1,3 +1,4 @@
+<% if (@recipe.public || (user_signed_in? && @recipe.user_id == current_user.id)) %>
 <% stylesheet_link_tag "recipes_show" %>
 <h1>recipe name: <%= @recipe.name %></h1>
 </br>
@@ -31,3 +32,8 @@ price: <%= (recipe_food.quantity * recipe_food.food.price).to_i %> $
   <button><%= link_to "Generate Shopping List", user_recipe_shopping_list_path(current_user.id, @recipe), remote: true, data: { turbo_frame: "shopping_modal" } %></button>
 <% end %>
 <%= render partial: 'shared/back' %>
+
+<% else %>
+<h1> You don't have permissons to see this recipe </h1>
+<% end %>
+

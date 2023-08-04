@@ -1,5 +1,35 @@
+<%# Recipes Public_Recipes %>
 <h1>test</h1>
 <% @public_recipes.map do |recipe| %>
-  <li><%= recipe.name %></li>
+  <p>Recipe: <%= link_to recipe.name, recipe_path(recipe.id) %></p>
+  <p><%# RecipeFood.where(recipe_id: recipe.id).count %></p>
+  <p>By: <%= User.find_by(id: recipe.user_id).name %></p>
+  <p>Total Food Items: <%= RecipeFood.where(recipe_id: recipe.id).count  %></p>
+  <p>
+    <%@recipe_food_id = RecipeFood.where(recipe_id: recipe.id) %>
+    <%# Total Recipe Food %>
+    <% @total_recipe_food = @recipe_food_id.map { |food| food.quantity } %>
+  </p>
+  <p>
+    <% @recipe_food = RecipeFood.where(recipe_id: recipe.id).map do |food| %>
+      <% @food_id = food.food_id %>
+      <% Food.where(id: @food_id) %>
+    <% end %>
+    <% @recipe_food.map do |food| %>
+      <% food.map {|food| food.price} %>
+    <% end %>
+    <% @recipe_food %>
+    <% @prices = prices_array = @recipe_food.map do |relation| %>
+      <% food_item = relation.first %>
+      <% food_item.price %>
+    <% end %>
+    <% result = @total_recipe_food.map.with_index do |total_food, index| %>
+      <% @total_price = total_food * @prices[index] %>
+    <% end %>
+    <p> Total price: $<%= result.sum %></p>
+  </p>
+  <p>
+  </p>
+</br>
 <% end %>
 <%= render partial: 'shared/back' %>
