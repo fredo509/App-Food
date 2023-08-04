@@ -5,6 +5,7 @@ RSpec.describe 'Recipes index page', type: :system do
   let(:user) { User.create(user_attributes) }
 
   before do
+    driven_by(:rack_test)
     user.confirm
     sign_in user
   end

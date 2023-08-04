@@ -7,6 +7,7 @@ RSpec.describe 'Inventory details page', type: :system do
   let(:inventory) { Inventory.create(user_id: user.id, name: 'inventory 1', description: 'Vel turpis nunc') }
 
   before do
+    driven_by(:rack_test)
     user.confirm
     sign_in user
 

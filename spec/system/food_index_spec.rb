@@ -1,14 +1,21 @@
 # spec/features/foods_index_spec.rb
 
+# spec/system/foods_index_spec.rb
+
 require 'rails_helper'
 
-RSpec.feature 'Foods Index', type: :feature do
-  scenario 'displays correct elements' do
+RSpec.describe 'Foods Index', type: :system do
+
+  
+  before(:each) do
+    driven_by(:rack_test)
+  end
+ 
+  it 'displays correct elements' do
     Food.create(name: 'Food 1', measurement_unit: 'Unit', price: 10)
     Food.create(name: 'Food 2', measurement_unit: 'Kg', price: 20)
 
     visit foods_path
-
 
     expect(page).to have_css('.foods-index-cont')
     expect(page).to have_content('to an account to add more food!')
@@ -20,3 +27,4 @@ RSpec.feature 'Foods Index', type: :feature do
     expect(page).to have_css('.foods-price', text: '10$')
   end
 end
+

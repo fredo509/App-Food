@@ -5,6 +5,7 @@ RSpec.describe 'Inventories index page', type: :system do
   let(:user) { User.create(user_attributes) }
 
   before(:each) do
+    driven_by(:rack_test)
     user.confirm
     sign_in user
 

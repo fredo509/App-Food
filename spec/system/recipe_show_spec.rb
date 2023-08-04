@@ -11,6 +11,7 @@ RSpec.describe 'Recipe show page', type: :system do
 
 
   before do
+    
     user.confirm
     sign_in user
     RecipeFood.create(food_id: food.id, recipe_id: recipe.id, quantity: 10)
