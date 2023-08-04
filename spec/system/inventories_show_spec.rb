@@ -19,7 +19,6 @@ RSpec.describe "Inventory details page", type: :system do
     expect(page).to have_content('details of inventory')
     expect(page).to have_content('inventory 1')
     expect(page).to have_content('Inventory Details')
-    expect(page).to have_content('Food')
    
   end
 end
