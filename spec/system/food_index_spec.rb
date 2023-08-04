@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.feature 'Foods Index', type: :feature do
-  scenario 'displays correct elements based on user permissions' do
+  scenario 'displays correct elements' do
     food_1 = Food.create(name: 'Food 1', measurement_unit: 'Unit', price: 10)
     food_2 = Food.create(name: 'Food 2', measurement_unit: 'Kg', price: 20)
 

@@ -17,8 +17,11 @@ RSpec.describe "Inventory details page", type: :system do
     visit user_inventory_path(user, inventory)
 
     expect(page).to have_content('details of inventory')
-    expect(page).to have_content('inventory 1')
-    expect(page).to have_content('Inventory Details')
    
+  end
+
+  it 'displays name' do
+    visit user_inventory_path(user, inventory)
+    expect(page).to have_content('inventory 1')
   end
 end

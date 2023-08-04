@@ -18,12 +18,16 @@ RSpec.describe "Inventories index page", type: :system do
     expect(page).to have_content('Inventory')
   end
 
-  it 'displays inventory names and descriptions' do
+
+  it 'displays names ' do
     visit user_inventories_path(user_id: user.id)
     expect(page).to have_content('inventory 1')
-    expect(page).to have_content('Vel turpis nunc')
-
     expect(page).to have_content('inventory 2')
+  end
+
+  it 'displays descriptions' do
+    visit user_inventories_path(user_id: user.id)
+    expect(page).to have_content('Vel turpis nunc')
     expect(page).to have_content('Another inventory')
   end
 
