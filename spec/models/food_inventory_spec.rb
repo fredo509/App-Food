@@ -10,14 +10,10 @@ RSpec.describe FoodInventory, type: :model do
   it 'is not valid without a quantity' do
     food_inventory.quantity = nil
     expect(food_inventory).not_to be_valid
-   
   end
 
   it 'is not valid with a negative quantity' do
     food_inventory.quantity = -5
     expect(food_inventory).not_to be_valid
-
   end
-
- 
 end

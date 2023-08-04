@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Inventory details page", type: :system do
+RSpec.describe 'Inventory details page', type: :system do
   let(:user_attributes) { { name: 'user B', email: 'test@gmail.com', password: '12345' } }
   let(:user) { User.create(user_attributes) }
   let(:food) { Food.create(name: 'Food 1') }
@@ -17,7 +17,6 @@ RSpec.describe "Inventory details page", type: :system do
     visit user_inventory_path(user, inventory)
 
     expect(page).to have_content('details of inventory')
-   
   end
 
   it 'displays name' do

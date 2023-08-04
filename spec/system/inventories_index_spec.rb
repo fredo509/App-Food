@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Inventories index page", type: :system do
+RSpec.describe 'Inventories index page', type: :system do
   let(:user_attributes) { { name: 'user B', email: 'test@gmail.com', password: '12345' } }
   let(:user) { User.create(user_attributes) }
 
@@ -39,6 +39,6 @@ RSpec.describe "Inventories index page", type: :system do
 
   it 'displays the "Add Inventory" link' do
     visit user_inventories_path(user_id: user.id)
-    expect(page).to have_link("Add Inventory", href: new_user_inventory_path(user))
+    expect(page).to have_link('Add Inventory', href: new_user_inventory_path(user))
   end
 end

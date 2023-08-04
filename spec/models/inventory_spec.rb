@@ -3,7 +3,7 @@ require 'rails_helper'
 
 RSpec.describe Inventory, type: :model do
   let(:user) { User.create(name: 'user B', email: 'test@gmail.com', password: '12345') }
-  let(:inventory) { Inventory.new(user: user) }
+  let(:inventory) { Inventory.new(user:) }
 
   it 'is not valid without a name' do
     expect(inventory).not_to be_valid

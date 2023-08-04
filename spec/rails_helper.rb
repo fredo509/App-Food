@@ -3,7 +3,7 @@ require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -31,7 +31,7 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.fixture_path = "#{Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -61,21 +61,21 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  
-# RSpec.configure do |config|
-#   config.include Devise::Test::IntegrationHelpers, type: :system
-# end
-RSpec.configure do |config|
-  # Other configurations...
 
-  # Configure the default URL options for ActionMailer in the test environment
-  config.before(:each, type: :system) do
-    driven_by :rack_test
+  # RSpec.configure do |config|
+  #   config.include Devise::Test::IntegrationHelpers, type: :system
+  # end
+  RSpec.configure do |_inner_config|
+    # Other configurations...
 
-    Rails.application.routes.default_url_options[:host] = 'localhost:3000'
-    # Change 'localhost:3000' to match your desired host and port.
+    # Configure the default URL options for ActionMailer in the test environment
+    config.before(:each, type: :system) do
+      driven_by :rack_test
+
+      Rails.application.routes.default_url_options[:host] = 'localhost:3000'
+      # Change 'localhost:3000' to match your desired host and port.
+    end
+
+    config.include Devise::Test::IntegrationHelpers, type: :system
   end
-
-  config.include Devise::Test::IntegrationHelpers, type: :system
-end
 end
