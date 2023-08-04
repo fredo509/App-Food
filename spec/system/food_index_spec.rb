@@ -5,12 +5,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Foods Index', type: :system do
-
-  
   before(:each) do
     driven_by(:rack_test)
   end
- 
+
   it 'displays correct elements' do
     Food.create(name: 'Food 1', measurement_unit: 'Unit', price: 10)
     Food.create(name: 'Food 2', measurement_unit: 'Kg', price: 20)
@@ -27,4 +25,3 @@ RSpec.describe 'Foods Index', type: :system do
     expect(page).to have_css('.foods-price', text: '10$')
   end
 end
-
