@@ -1,13 +1,60 @@
-<h1>Hello World</h1>
-<% puts '000000000 RECIPES 000000000' %>
-<% puts current_user.id %>
-<% puts @recipes.map { |recipe| "recipe #{recipe.id} - #{recipe.name}" } %>
-<% puts @ingredient.map {|ingredient| "#{ingredient.name}"} %>
-<% puts '000000000 0000000 000000000' %>
-<% puts %>
-<% puts %>
-<% puts %>
-<% puts '000000000 INVENTORIES 000000000' %>
-<% puts @inventory.map {|inv| "inventory #{inv.id} - #{inv.name}"} %>
-<% puts @inventory_ingredient.map {|ingredient| "#{ingredient.name}"} %>
-<% puts '000000000 00000000000 000000000' %>
+<%= turbo_frame_tag "shopping_modal" do %>
+  <div class="shopping_modal_cont">
+    <div class="shopping_modal">
+      <h1>Hello World</h1>
+      <%# Dropdown to select inventory ID %>
+      <%= form_with url: user_recipe_shopping_list_path, class: 'form', method: :get do |form| %>
+       <%= form.hidden_field :recipe, value: @recipe %>
+        <div class="field">
+          <%= form.label :inventory_id, 'Select Inventory:' %>
+        </div>
+        <div class="field">
+          <%= form.collection_select(:inventory_id, @inventory, :id, :name, prompt: true) %>
+        </div class="field">
+        <div>
+          <%= form.submit 'Generate', class: 'submit-btn', data: { turbo: false } %>
+        </div class="field">
+      <% end %>
+      <%# Output for debugging, display only if form submitted %>
+      <% if @inventory.present? %>
+        <% selected_inventory = @inventory.find_by(id: params[:inventory_id]) %>
+        <% if selected_inventory %>
+          <h3>Selected Inventory: <%= selected_inventory.name %></h3>
+          <p>Inventory Items:  
+          <%= FoodInventory.where(inventory_id: selected_inventory.id).map do |inventory_food| %>
+          <%= inventory_food.quantity %>
+          <% end %>
+          </p>
+          <%# link_to 'Close Modal', :user_recipe_shopping_list_path(current_user.id, @recipe.id), data: {controller: "shopping_modal", action: "close_modal", } %>
+          <style>
+            .shopping_modal{max-width: 100%; height: 100%;} .form{display: none;}
+          </style>
+          <!-- Add other details of the inventory as needed -->
+        <% else %>
+          <%= link_to 'Close Modal', :back, data: {controller: "shopping_modal", action: "close_modal", } %>
+        <% end %>
+      <% else %>
+        <p>No inventories available.</p>
+      <% end %>
+    </div>
+  </div>
+  <% if params[:inventory_id].present? %>
+    <h3><%= params[:inventory_id] %></h3>
+    <% puts '000000000 RECIPES 000000000' %>
+    <% puts current_user.id %>
+    <% puts @recipes.map { |recipe| "recipe #{recipe.id} - #{recipe.name}" } %>
+    <% puts @ingredient.map {|ingredient| "#{ingredient.name}"} %>
+    <% puts '000000000 0000000 000000000' %>
+    <% puts %>
+    <% puts %>
+    <% puts %>
+    <% puts '000000000 INVENTORIES 000000000' %>
+    <% puts ## HERE ADD INVENTORY WHERE ID = param:[inventory.id] %>
+    <% puts @inventory.map {|inv| "inventory #{inv.id} - #{inv.name}"} %>
+    <% puts @inventory_ingredient.map {|ingredient| "#{ingredient.name}"} %>
+    <% puts '000000000 00000000000 000000000 000000000' %>
+    <% puts @recipes %>
+    <% puts '000000000 00000000000 000000000 000000000' %>
+  <% else %>
+  <% end %>
+<% end %>

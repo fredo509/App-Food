@@ -11,8 +11,9 @@ Rails.application.routes.draw do
   
   resources :users  do
     resources :recipes, only: %i[index show new create edit update destroy] do
-      get 'shopping_list', to: 'recipes#shopping_list', as: 'shopping_list'
       resources :recipe_food, only: %i[new show create destroy update edit ]
+      get 'shopping_list', to: 'recipes#shopping_list', as: 'shopping_list' do
+      end
     end
     resources :inventories, only: %i[index show new create edit update destroy] do
     resources :food_inventories, only: %i[index show new create destroy]

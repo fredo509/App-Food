@@ -62,3 +62,30 @@ body {
 }
 
 /* ------- Navbar ------- */
+
+/* ------- Shopping Modal ------- */
+
+.shopping_modal_cont {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  left: 0;
+  top: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.shopping_modal {
+  width: 100%;
+  max-width: 30rem;
+  height: 25rem;
+  background-color: rgb(134, 134, 134);
+  padding: 2rem;
+}
+
+.turbo-frame-error {
+  display: none;
+}
+
+/* ------- Shopping Modal ------- */

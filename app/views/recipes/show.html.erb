@@ -1,3 +1,5 @@
+<% stylesheet_link_tag "recipes_show" %>
+
 <h1>recipe name: <%= @recipe.name %></h1>
 </br>
 <h2><%= link_to 'Add Ingredient', new_user_recipe_recipe_food_path(current_user.id, recipe_id: @recipe_id) %></h2>
@@ -27,7 +29,8 @@ price: <%= (recipe_food.quantity * recipe_food.food.price).to_i %> $
 
 
 <% end %>
-<button><%= link_to "Generate Shopping List", user_recipe_shopping_list_path(current_user.id, @recipe) %></button>
+<button><%= link_to "Generate Shopping List", user_recipe_shopping_list_path(current_user.id, @recipe), data: { turbo_frame: "shopping_modal" } %></button>
+
 <%= render partial: 'shared/back' %>
 
 

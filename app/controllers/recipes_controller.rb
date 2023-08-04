@@ -45,11 +45,9 @@ class RecipesController < ApplicationController
     @public_recipes = Recipe.where(public: true)
   end
 
-  def shopping_list
-
-
+  def shopping_list(inventory_id = nil)
     @recipes = Recipe.where(user_id: current_user.id)
-    @recipe_food = []  # Initialize the hash as an empty hash
+    @recipe_food = [] # Initialize the array as an empty array
     @ingredient = []
 
     @recipes.each do |recipe|
@@ -57,7 +55,12 @@ class RecipesController < ApplicationController
       @ingredient += Food.where(id: @recipe_food.pluck(:food_id))
     end
 
-    @inventory = Inventory.where(user_id: current_user.id)
+    @inventory = if inventory_id
+                   Inventory.where(id: inventory_id)
+                 else
+                   Inventory.where(user_id: current_user.id)
+                 end
+
     @food_inventory = []
     @inventory_ingredient = []
 
@@ -65,10 +68,10 @@ class RecipesController < ApplicationController
       @food_inventory = FoodInventory.where(inventory_id: inventory.id)
       @inventory_ingredient += Food.where(id: @food_inventory.pluck(:food_id))
     end
-    
-    @food = Food.all
 
+    @food = Food.all
   end
+
 
   private
 
