@@ -46,6 +46,7 @@ class RecipesController < ApplicationController
   end
 
   def shopping_list(inventory_id = nil)
+    @recipe = Recipe.find(params[:recipe_id])
     @recipes = Recipe.where(user_id: current_user.id)
     @recipe_food = [] # Initialize the array as an empty array
     @ingredient = []

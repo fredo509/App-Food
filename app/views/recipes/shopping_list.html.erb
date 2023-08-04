@@ -4,7 +4,10 @@
       <h1>Hello World</h1>
       <%# Dropdown to select inventory ID %>
       <%= form_with url: user_recipe_shopping_list_path, class: 'form', method: :get do |form| %>
-       <%= form.hidden_field :recipe, value: @recipe %>
+        <%= form.hidden_field :recipe_id, value: params[:recipe_id] %>
+        <% puts '999999999999999999999' %>
+        <% puts "recipe ID: #{@recipe.id} Recipe Name: #{@recipe.name}" %>
+        <% puts '999999999999999999999' %>
         <div class="field">
           <%= form.label :inventory_id, 'Select Inventory:' %>
         </div>
@@ -20,18 +23,36 @@
         <% selected_inventory = @inventory.find_by(id: params[:inventory_id]) %>
         <% if selected_inventory %>
           <h3>Selected Inventory: <%= selected_inventory.name %></h3>
-          <p>Inventory Items:  
-          <%= FoodInventory.where(inventory_id: selected_inventory.id).map do |inventory_food| %>
-          <%= inventory_food.quantity %>
-          <% end %>
+          <p>Inventory Items:
+            <% FoodInventory.where(inventory_id: selected_inventory.id).each do |inventory_food| %>
+              <% food = Food.find_by(id: inventory_food.food_id) %>
+              <%= food.name if food %> <!-- To avoid errors if the food item is not found -->
+            <% end %>
           </p>
-          <%# link_to 'Close Modal', :user_recipe_shopping_list_path(current_user.id, @recipe.id), data: {controller: "shopping_modal", action: "close_modal", } %>
+          <h3>Selected Recipe: <%= @recipe.name %></h3>
+          <p>Recipe Items:
+            <% @recipe.recipe_food.each do |recipe_food| %>
+              <% food = Food.find_by(id: recipe_food.food_id) %>
+              <%= food.name if food %> <!-- To avoid errors if the food item is not found -->
+            <% end %>
+          </p>
+          <h3>Missing Ingredients:</h3>
+          <% @recipe.recipe_food.each do |recipe_food| %>
+            <% food = Food.find_by(id: recipe_food.food_id) %>
+            <% if food %>
+              <% if FoodInventory.where(inventory_id: selected_inventory.id, food_id: food.id).empty? %>
+                <%= food.name %> <!-- To avoid errors if the food item is not found -->
+              <% end %>
+            <% end %>
+          <% end %>
+          <%# link_to 'Close Modal', user_recipe_shopping_list_path(current_user.id, @recipe.id), data: {controller: "shopping_modal", action: "close_modal", } %>
           <style>
-            .shopping_modal{max-width: 100%; height: 100%;} .form{display: none;}
+            .shopping_modal { max-width: 100%; height: 100%; }
+            .form { display: none; }
           </style>
           <!-- Add other details of the inventory as needed -->
         <% else %>
-          <%= link_to 'Close Modal', :back, data: {controller: "shopping_modal", action: "close_modal", } %>
+          <%= link_to 'Close Modal', :back, data: {controller: "shopping_modal", action: "close_modal" } %>
         <% end %>
       <% else %>
         <p>No inventories available.</p>
