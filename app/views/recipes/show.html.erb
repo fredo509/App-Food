@@ -1,0 +1,82 @@
+<% stylesheet_link_tag "recipes_show" %>
+<% if (@recipe.public || (user_signed_in? && @recipe.user_id == current_user.id)) %>
+  <div class="recipes-show-cont">
+    <div class="recipes-show-main">
+      <h1><%= @recipe.name %></h1>
+      <div class="recipes-show-chart">
+        <div class="recipes-show-features">
+          <p class="recipes-show-prep"> <span>preparation time:</span> <%= @recipe.preparation_time.to_i %> minutes </p>
+          <div class="recipes-show-public">
+            <% if user_signed_in? %>
+              <% if current_user.id == @recipe.user_id %>
+                <span>public:</span>
+                <%= form_with(model: @recipe, local: true, class:"toggle-button", method: :patch) do |form| %>
+                  <%= form.check_box :public, class: "public-toggle", id: "public-toggle", onchange: "this.form.submit();" %>
+                  <label class="public-toggle-label" for="public-toggle">
+                    <div class="public-toggle-slider"></div>
+                  </label>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <p class="recipes-show-cooking"> <span>cooking time:</span> <%= @recipe.cooking_time.to_i %> minutes </p>
+        <p class="recipes-show-desc"><%= @recipe.description %> </p>
+      </div>
+      <% if user_signed_in? %>
+        <div class="recipes-show-actions">
+          <%= link_to "Generate Shopping List", user_recipe_shopping_list_path(current_user.id, @recipe), remote: true, data: { turbo_frame: "shopping_modal" }, class: "btn" %>
+          <% if @recipe.user_id == current_user.id %>
+          <%= link_to 'Ingredients List', foods_path, class: 'foods-index-create'  %>
+            <%= link_to 'Add Ingredient', new_user_recipe_recipe_food_path(current_user.id, recipe_id: @recipe.id), class: "btn" %>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="recipes-show">
+        <div class="recipes-show-info">
+          <h3 class="recipes-title">Food</h3>
+          <h3 class="recipes-title">Quantity</h3>
+          <h3 class="recipes-title">Price</h3>
+          <% if user_signed_in? %>
+            <% if @recipe.user_id == current_user.id  %>
+              <style>
+                .recipes-show-info{ grid-template-columns: repeat(4, 1fr) }
+              </style>
+              <h3 class="recipes-title">Actions</h3>
+            <% else %>
+              <style>
+                .recipes-show-info{ grid-template-columns: repeat(3, 1fr) }
+              </style>
+            <% end %>
+          <% else %>
+            <style>
+              .recipes-show-info{ grid-template-columns: repeat(3, 1fr) }
+            </style>
+          <% end %>
+        </div>
+        <% if @recipe_food.present? %>
+          <% @recipe_food.map do |recipe_food| %>
+            <div class="recipes-show-info">
+              <p class="recipes-name"><%= recipe_food.food.name %></p>
+              <p class="recipes-quantity"><%= recipe_food.quantity %> <%= recipe_food.food.measurement_unit %></p>
+              <p class="recipes-price"><%= (recipe_food.quantity * recipe_food.food.price).to_i %> $ </p>
+              <% if user_signed_in? %>
+                <% if @recipe.user_id == current_user.id  %>
+                  <div class="recipes-upd">
+                    <%= link_to 'Modify', edit_user_recipe_recipe_food_path(current_user, @recipe, recipe_food.id), class: "recipes-btn" %>
+                    <%= button_to 'Delete', user_recipe_recipe_food_path(current_user.id , @recipe, recipe_food), method: :delete, turbo_confirm: 'Delete recipe?', class: "recipes-btn" %>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <%= paginate @recipe_food, class: 'pagination' %>
+      <% end %>
+      <%= render partial: 'shared/back' %>
+    <% else %>
+      <h1> You don't have permissons to see this recipe </h1>
+      <%= render partial: 'shared/back' %>
+    </div>
+  </div>
+<% end %>

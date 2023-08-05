@@ -1,0 +1,36 @@
+<%= stylesheet_link_tag 'inventories' %>
+<div class="inventories-index-cont">
+
+<div class="inventories-index">
+<%= link_to "Add New Inventory", new_user_inventory_path(@user), class: "inventories-index-add" %>
+
+
+<% if @inventories.any? %>
+  <% @inventories.each do |inventory| %>
+      <div class="inventories-index-list">
+
+        <div class="inventories-index-actions">
+
+        <h2 class="inventories-index-link"><%= link_to inventory.name, user_inventory_path(inventory.user, inventory) %></h2>
+        <% if can?(:destroy, inventory) %>
+          <%= button_to "Remove", user_inventory_path(inventory.user, inventory), method: :delete, class: "inventories-index-remove" %>
+        <% end %>
+        </div>
+
+        <div class="inventories-index-actions"><p class=""><%= inventory.description %></p></div>
+
+      </div>
+  <% end %>
+<% else %>
+  <h2 class="inventories-index-empty"> There's no inventories yet </h2>
+<% end %>
+
+<%= paginate @inventories, class:"pagination" %>
+
+<%= render partial: 'shared/back' %>
+
+
+
+</div>
+
+</div>

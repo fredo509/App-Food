@@ -1,0 +1,325 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+/* ------- Normalization ------- */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*:visited,
+*:link {
+  text-decoration: none;
+  color: black;
+}
+
+body {
+  padding: 3rem 2rem;
+  height: 100vh;
+  overflow-y: hidden;
+  font-family: monospace;
+}
+
+.button_to {
+  text-align: center;
+}
+
+/* ------- Normalization ------- */
+
+/* ------- Navbar ------- */
+
+.layouts-application-navbar {
+  display: flex;
+  width: 100vw;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.377);
+  top: 0;
+  left: 0;
+  justify-content: space-between;
+  padding: 0.5rem 2rem;
+}
+
+.navbar-title {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.layouts-application-config {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+@keyframes alert_fade_in_left {
+  0% {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(-100%);
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+  }
+}
+
+@keyframes alert_fade_out_left {
+  0% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+  }
+
+  100% {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(-100%);
+  }
+}
+
+.alerts {
+  opacity: 0;
+  animation:
+    alert_fade_in_left 0.5s ease-in-out forwards,
+    alert_fade_out_left 0.5s ease-in-out forwards 3s;
+}
+
+/* ------- Navbar ------- */
+
+/* ------- Shopping Modal ------- */
+
+.shopping_modal_cont {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  left: 0;
+  top: 2.6rem;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.452);
+  backdrop-filter: blur(3px);
+}
+
+.shopping_modal {
+  width: 100%;
+  max-width: 30rem;
+  height: 25rem;
+  background-color: rgb(251, 251, 251);
+  padding: 2rem;
+  border: 3px solid black;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.form-title {
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+#inventory_id {
+  padding: 0.22rem 0;
+}
+
+.form-actions {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.turbo-frame-error {
+  display: none;
+}
+
+.btn {
+  text-align: right;
+  background-color: rgb(248, 248, 248);
+  padding: 0.25rem 0.5rem;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: fit-content;
+  align-self: flex-end;
+}
+
+.btn:hover {
+  cursor: pointer;
+  filter: invert(1);
+}
+
+.form-external-links {
+  font-weight: bold;
+  color: rgb(0, 56, 168);
+  transition: all 0.2s ease-in-out;
+}
+
+.form-external-links:hover {
+  cursor: pointer;
+  color: rgb(0, 0, 255);
+}
+
+.shopping-char-cont {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.shopping-char {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  gap: 0.25rem;
+  justify-content: space-between;
+}
+
+tbody {
+  border: 2px solid black;
+}
+
+td,
+th {
+  border-left: 2px solid black !important;
+}
+
+tr:last-child > td:nth-child(1) {
+  border-top: 2px solid black !important;
+}
+
+/* ------- Shopping Modal ------- */
+
+/* ------- All The Forms ------- */
+
+.forms {
+  width: 100%;
+}
+
+.new_user {
+  width: 100%;
+}
+
+#edit_user {
+  width: 100%;
+}
+
+.user-form {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+}
+
+.user-form-cont {
+  width: 100%;
+  max-width: 30rem;
+  background-color: rgb(214, 214, 214);
+  padding: 2rem;
+  box-shadow: 1px 6px 20px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-form-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.field em {
+  font-size: 12px;
+  color: #666;
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #585858;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.submit-btn:hover {
+  background-color: #333;
+}
+
+.shared-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.shared-link {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.go-back {
+  color: black;
+  text-align: center;
+}
+
+.error-messages {
+  color: #f00;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.actions {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* ------- All The Forms ------- */

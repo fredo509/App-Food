@@ -1,0 +1,24 @@
+<div class="user-form">
+  <div class="user-form-cont">
+    <h2 class="user-form-title">Form Food Inventory</h2>
+
+    <%= form_with(model: [current_user, FoodInventory.new], url: user_inventory_food_inventories_path(current_user, @inventory.id), local: true) do |form| %>
+      <style>body > div.user-form > div > form {width:100%}</style>
+      <%= form.hidden_field :inventory_id, value: @inventory.id %>
+
+      <div class="field">
+        <%= form.label :food_id, 'Select Food:', class: "form-label" %>
+        <%= form.collection_select(:food_id, Food.all, :id, :name, { include_blank: "Select Food" }, { class: "form-input", required: true }) %>
+      </div>
+
+      <div class="field">
+        <%= form.label :quantity, class: "form-label" %>
+        <%= form.number_field :quantity, class: "form-input", required: true %>
+      </div>
+
+      <%= form.submit "Create Food Inventory", class: "submit-btn" %>
+    <% end %>
+  </div>
+</div>
+
+

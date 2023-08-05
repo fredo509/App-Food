@@ -1,0 +1,15 @@
+<div class="user-form">
+  <div class="user-form-cont">
+    <h2 class="user-form-title">New Inventory</h2>
+    <%= form_with(class:"forms", model: [current_user, Inventory.new], url: user_inventories_path(current_user), local: true) do |form| %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+      <div class="field">
+        <%= form.text_field :name, placeholder: "Inventory Name", class: "form-input" %>
+      </div>
+      <div class="field">
+        <%= form.text_field :description, placeholder: "Description", class: "form-input" %>
+      </div>
+      <%= form.submit "Create Inventory", class: "submit-btn" %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MealTown</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= turbo_include_tags %>
+ 
+
+  </head>
+  <body>
+    <div class ="layout-errors">
+      <% if alert.present? || notice.present? %>
+        <div class="alerts">
+          <%= notice %>
+          <%= alert %>
+        </div>
+      <% end %>
+    </div>
+    <div class="layouts-application-navbar">
+      <% if user_signed_in? %>
+        <%= link_to current_user.name, edit_user_registration_path(current_user.id), class:"navbar-title" %>
+        <div class="layouts-application-config">
+          <%= link_to 'Your recipes', user_recipes_path(current_user.id) %>
+          <%= link_to 'Public recipes', public_recipes_path  %>
+          <%= link_to 'My Inventories', user_inventories_path(current_user.id) %>
+          <%= button_to "Sign out", destroy_user_session_path, :method => :get, class: "btn" %>
+        </div>
+      <% else  %>
+        <%= link_to "Home", foods_path, class:"navbar-title"  %>
+        <div class="layouts-application-config">
+          <%= link_to "Recipes", public_recipes_path %>
+          <%= link_to "Sign in", new_user_session_path, class: "btn" %>
+          <%= link_to "Sign up", new_user_registration_path, class: "btn" %>
+        </div>
+      <% end %>
+    </div>
+    
+    <%= turbo_frame_tag "shopping_modal" %>
+
+    <%= yield %>
+  </body>
+</html>

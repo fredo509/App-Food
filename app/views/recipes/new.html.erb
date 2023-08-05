@@ -1,0 +1,25 @@
+<div class="user-form">
+  <div class="user-form-cont">
+    <h2 class="user-form-title">New Recipe</h2>
+    <%= form_with(model: [current_user, Recipe.new], class:"forms", url: recipes_path, local: true) do |form| %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+      <div class="field">
+        <%= form.text_field :name, placeholder: "Recipe Name", class: "form-input" %>
+      </div>
+      <div class="field">
+        <%= form.text_field :description, placeholder: "Description", class: "form-input" %>
+      </div>
+      <div class="field">
+        <%= form.number_field :preparation_time, placeholder: "Preparation time", class: "form-input" %>
+      </div>
+      <div class="field">
+        <%= form.number_field :cooking_time, placeholder: "Cooking time", class: "form-input" %>
+      </div>
+      <div class="field">
+        <%= form.label :public, "Make this recipe public?" %>
+        <%= form.check_box :public, class: "form-checkbox" %>
+      </div>
+      <%= form.submit 'Add recipe', class: "submit-btn" %>
+    <% end %>
+  </div>
+</div>
