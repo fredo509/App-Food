@@ -23,9 +23,17 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [Blog App] `[Ruby On Rails]` <a name="about-project"></a>
+# 📖 [Food App] `[Ruby On Rails]` <a name="about-project"></a>
 
-Ruby on Rails blog app, following the MVC pattern and using Devise gem authentication system followed by CanCanCan gem authorization, this is a showcase of the power of ruby on rails, this app storages and interacts with the database, you can see the ERD (Entity Relationship Diagram) below
+The Ruby on Rails Food application exemplifies the MVC architecture and leverages the Devise gem for authentication and the CanCanCan gem for authorization. Demonstrating the robust capabilities of Ruby on Rails, this app seamlessly interacts with a database to deliver an impressive user experience.
+
+With a focus on food-related functionalities, the app offers a comprehensive view interface encompassing foods, recipes, and inventories. Through this interface, users are empowered to perform a range of actions. They can effortlessly add, delete, or edit items, provided they possess the necessary authorization based on their assigned role within the system.
+
+The app also introduces a unique feature: the ability to generate a shopping list. By activating a modal and selecting items from the inventory, users can craft a personalized shopping list tailored to their requirements.
+
+Furthermore, the app supports enhanced sharing capabilities. Users have the option to make their recipes public, extending access to all users — even those who aren't authenticated. This inclusivity encourages an exchange of culinary knowledge and ideas, fostering a collaborative environment within the app's user community.
+
+In summary, the Ruby on Rails Food app is a showcase of the dynamic potential of the Ruby on Rails framework. By adhering to the MVC pattern and integrating authentication, authorization, and innovative features, it seamlessly orchestrates database interactions and provides users with a feature-rich platform for managing food-related content and enhancing their culinary experiences.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -110,12 +118,7 @@ sh
 
 
 sh
-  To run specific the specific tests for each view, execute one of the following codes:
-
-  Do user_index view test command: 'rspec spec/views/users/index.html.erb_spec.rb'
-  Do user_show view test command: 'rspec spec/views/users/show.html.erb_spec.rb'
-  Do posts_index view test command: 'rspec spec/views/posts/index.html.erb_spec.rb'
-  Do posts_show view test command: 'rspec spec/views/posts/show.html.erb_spec.rb'
+  To run tests by using rspec
 
 
 ### Deployment
@@ -167,7 +170,7 @@ Feel free to check the [issues page](../../issues/).
 
 ## ⭐️ Show your support <a name="support"></a>
 
-If you like this project, be pending on my profile since I'll be doing much more!
+If you like this project, be pending on our profiles. We are open to listen your opinion!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -175,7 +178,7 @@ If you like this project, be pending on my profile since I'll be doing much more
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to thanks my Microverse Team and partners for helping me to get this done.
+We extend our heartfelt gratitude to the Microverse Team and our valued partners, whose collaboration and support have been instrumental in bringing this project to fruition.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
