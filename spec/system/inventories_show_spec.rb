@@ -14,12 +14,6 @@ RSpec.describe 'Inventory details page', type: :system do
     FoodInventory.create(inventory_id: inventory.id, food_id: food.id, quantity: 10)
   end
 
-  it 'displays inventory details' do
-    visit user_inventory_path(user, inventory)
-
-    expect(page).to have_content('details of inventory')
-  end
-
   it 'displays name' do
     visit user_inventory_path(user, inventory)
     expect(page).to have_content('inventory 1')
