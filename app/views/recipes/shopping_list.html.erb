@@ -27,8 +27,8 @@
         <% @selected_inventory = @inventory.find_by(id: params[:inventory_id]) %>
         <!-- Logic -->
         <% if @selected_inventory %>
-          <% @inventory_food = @selected_inventory.food_inventories.map(&:food).compact.sort_by(&:id) %>
-          <% @recipe_food = @recipe.recipe_food.map(&:food).compact.sort_by(&:id) %>
+          <% @inventory_food = @selected_inventory.food_inventories.includes([:food]).map(&:food).compact.sort_by(&:id) %>
+          <% @recipe_food = @recipe.recipe_food.includes([:food]).map(&:food).compact.sort_by(&:id) %>
           <% common_length = [@inventory_food.length, @recipe_food.length].min %>
           <% difference = @inventory_food.zip(@recipe_food).count do |a, b| a&.id != nil && b&.id != nil && a.id != b.id end %>
           <!-- Logic -->

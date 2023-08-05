@@ -9,7 +9,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    @recipe_food = @recipe.recipe_food.page(params[:page]).per(3)
+    @recipe_food = RecipeFood.includes(:food).where(recipe_id: @recipe.id).page(params[:page]).per(3)
     @actual_user = current_user
     @food = Food.all
     @recipe_id = @recipe.id
@@ -46,7 +46,8 @@ class RecipesController < ApplicationController
     if @recipe.update(recipe_params)
       redirect_to @recipe, notice: 'Recipe was successfully updated.'
     else
-      render :show
+      puts @recipe.errors.full_messages # Print errors to the console
+      render :show, alert: 'Something went wrong'
     end
   end
 
@@ -57,30 +58,21 @@ class RecipesController < ApplicationController
   def shopping_list(inventory_id = nil)
     @recipe = Recipe.find(params[:recipe_id])
     @recipes = Recipe.where(user_id: current_user.id)
-    @recipe_food = [] # Initialize the array as an empty array
-    @ingredient = []
-
-    @recipes.each do |recipe|
-      @recipe_food = RecipeFood.where(recipe_id: recipe.id)
-      @ingredient += Food.where(id: @recipe_food.pluck(:food_id))
-    end
+    @recipe_food = RecipeFood.where(recipe_id: @recipes.pluck(:id))
+    @ingredient = Food.where(id: @recipe_food.pluck(:food_id))
 
     @inventory = if inventory_id
-                   Inventory.where(id: inventory_id)
+                   Inventory.includes([:food]).where(id: inventory_id)
                  else
                    Inventory.where(user_id: current_user.id)
                  end
 
-    @food_inventory = []
-    @inventory_ingredient = []
-
-    @inventory.each do |inventory|
-      @food_inventory = FoodInventory.where(inventory_id: inventory.id)
-      @inventory_ingredient += Food.where(id: @food_inventory.pluck(:food_id))
-    end
+    @food_inventory = FoodInventory.where(inventory_id: @inventory.pluck(:id))
+    @inventory_ingredient = Food.where(id: @food_inventory.pluck(:food_id))
 
     @food = Food.all
   end
+
 
 
   private
