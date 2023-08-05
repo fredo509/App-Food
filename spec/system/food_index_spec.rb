@@ -1,5 +1,3 @@
-# spec/features/foods_index_spec.rb
-
 # spec/system/foods_index_spec.rb
 
 require 'rails_helper'
@@ -12,6 +10,9 @@ RSpec.describe 'Foods Index', type: :system do
   it 'displays correct elements' do
     Food.create(name: 'Food 1', measurement_unit: 'Unit', price: 10)
     Food.create(name: 'Food 2', measurement_unit: 'Kg', price: 20)
+
+    user = User.create(email: 'test@example.com', password: 'password', confirmed_at: Time.now)
+    sign_in user
 
     visit foods_path
 

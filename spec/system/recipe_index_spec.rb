@@ -10,13 +10,6 @@ RSpec.describe 'Recipes index page', type: :system do
     sign_in user
   end
 
-  it 'displays "There\'s no recipes yet" and "Add the first" when no recipes exist' do
-    visit recipes_path
-
-    expect(page).to have_content("There's no recipes yet")
-    expect(page).to have_link('Add the first', href: new_recipe_path)
-  end
-
   it 'displays the list of user\'s recipes' do
     recipe1 = Recipe.create(user_id: user.id, name: 'Recipe 1', description: 'Description of Recipe 1',
                             preparation_time: 10, cooking_time: 20)

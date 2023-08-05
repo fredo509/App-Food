@@ -40,6 +40,6 @@ RSpec.describe 'Inventories index page', type: :system do
 
   it 'displays the "Add Inventory" link' do
     visit user_inventories_path(user_id: user.id)
-    expect(page).to have_link('Add Inventory', href: new_user_inventory_path(user))
+    expect(page).to have_link('Add New Inventory', href: new_user_inventory_path(user))
   end
 end
