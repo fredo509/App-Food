@@ -3,7 +3,12 @@ class Recipe < ApplicationRecord
 
   has_many :recipe_food
   has_many :food, foreign_key: 'id'
+
   validates :name, presence: true
+  validates :description, presence: true
+  validates :preparation_time, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :cooking_time, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
 
   def public?
     public
