@@ -56,9 +56,52 @@ body {
   padding: 0.5rem 2rem;
 }
 
+.navbar-title {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .layouts-application-config {
   display: flex;
   gap: 1rem;
+  align-items: center;
+}
+
+@keyframes alert_fade_in_left {
+  0% {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(-100%);
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+  }
+}
+
+@keyframes alert_fade_out_left {
+  0% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+  }
+
+  100% {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(-100%);
+  }
+}
+
+.alerts {
+  opacity: 0;
+  animation:
+    alert_fade_in_left 0.5s ease-in-out forwards,
+    alert_fade_out_left 0.5s ease-in-out forwards 3s;
 }
 
 /* ------- Navbar ------- */
@@ -74,18 +117,104 @@ body {
   top: 2rem;
   justify-content: center;
   align-items: center;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.452);
+  backdrop-filter: blur(3px);
 }
 
 .shopping_modal {
   width: 100%;
   max-width: 30rem;
   height: 25rem;
-  background-color: rgb(134, 134, 134);
+  background-color: rgb(251, 251, 251);
   padding: 2rem;
+  border: 3px solid black;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.form-title {
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+#inventory_id {
+  padding: 0.22rem 0;
+}
+
+.form-actions {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
 }
 
 .turbo-frame-error {
   display: none;
 }
+
+.btn {
+  text-align: right;
+  background-color: rgb(248, 248, 248);
+  padding: 0.25rem 0.5rem;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: fit-content;
+  align-self: flex-end;
+}
+
+.btn:hover {
+  cursor: pointer;
+  filter: invert(1);
+}
+
+.form-external-links {
+  font-weight: bold;
+  color: rgb(0, 56, 168);
+  transition: all 0.2s ease-in-out;
+}
+
+.form-external-links:hover {
+  cursor: pointer;
+  color: rgb(0, 0, 255);
+}
+
+.shopping-char-cont {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.shopping-char {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  gap: 0.25rem;
+  justify-content: space-between;
+}
+
+tbody {
+  border: 2px solid black;
+}
+
+td,
+th {
+  border-left: 2px solid black !important;
+}
+
+tr:last-child > td:nth-child(1) {
+  border-top: 2px solid black !important;
+}
+
 
 /* ------- Shopping Modal ------- */
