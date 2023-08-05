@@ -6,14 +6,15 @@
       <% else %>
         <h1 class="form-title">Generating Shopping List</h1>
         <style>
-          .form-btn{ align-self: center !important; transform: translateY(9rem);}
+          .form-btn{ align-self: center !important; transform: translateY(6rem);}
         </style>
       <% end %>
-      <%= form_with url: user_recipe_shopping_list_path, class: 'form', method: :get do |form| %>
+      <%= form_with url: user_recipe_shopping_list_path, class: 'forms', method: :get do |form| %>
         <%= form.hidden_field :recipe_id, value: params[:recipe_id] %>
         <div class="field">
-          <h3><%= form.label :inventory_id, 'Choose an inventory to use:' %></h3>
+          <h3 class="shopping-sub"><%= form.label :inventory_id, 'Choose an inventory to use:' %></h3>
         </div>
+        <style> .shopping-sub {text-align: center} </style>
         <div class="form-actions">
           <div class="field">
             <%= form.collection_select(:inventory_id, @inventory, :id, :name, { prompt: true }, { required: true }) %>

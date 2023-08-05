@@ -49,7 +49,9 @@
   background-color: rgb(230, 230, 230);
 }
 
-.inventories-title {
+.inventories-title,
+.inventories-name,
+.inventories-quantity {
   text-align: center;
 }
 

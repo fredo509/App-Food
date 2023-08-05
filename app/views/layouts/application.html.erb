@@ -21,7 +21,7 @@
     </div>
     <div class="layouts-application-navbar">
       <% if user_signed_in? %>
-        <%= link_to current_user.name, foods_path, class:"navbar-title" %>
+        <%= link_to current_user.name, edit_user_registration_path(current_user.id), class:"navbar-title" %>
         <div class="layouts-application-config">
           <%= link_to 'Your recipes', user_recipes_path(current_user.id) %>
           <%= link_to 'Public recipes', public_recipes_path  %>

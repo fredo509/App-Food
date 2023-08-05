@@ -4,6 +4,7 @@
     <h1> <%= @inventory.name %> </h1>
     <div class="inventories-show-actions">
       <%= link_to "Add Food", new_user_inventory_food_inventory_path(current_user.id, @inventory.id), class: 'btn'%>
+      <%= link_to 'Ingredients List', foods_path, class: 'foods-index-create'  %>
     </div>
     <% if @food.count == 0  %>
       <div>

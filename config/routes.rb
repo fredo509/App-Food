@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # config/routes.rb
   devise_for :users
 
-  root to: 'foods#index'
+  root to: 'recipes#public_recipes'
 
   get 'public_recipes', to: 'recipes#public_recipes', as: 'public_recipes'
   

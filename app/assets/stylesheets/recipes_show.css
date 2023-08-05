@@ -120,7 +120,7 @@
 .recipes-quantity,
 .recipes-price,
 .recipes-upd {
-  text-align: center;
+  text-align: center !important;
 }
 
 .recipes-btn {

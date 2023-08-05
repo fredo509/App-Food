@@ -1,18 +1,17 @@
-<!-- app/views/comments/new.html.erb -->
-<%= form_with(model: [current_user, Food.new], url: foods_path, local: true) do |form| %>
-  <h1 class="foods-form-title">New Food</h1>
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, placeholder: "Food Name" %>
+<div class="user-form">
+  <div class="user-form-cont">
+    <h2 class="user-form-title">New Food</h2>
+    <%= form_with(class:"forms", model: [current_user, Food.new], url: foods_path, local: true) do |form| %>
+      <div class="field">
+        <%= form.text_field :name, placeholder: "Food Name", class: "form-input" %>
+      </div>
+      <div class="field">
+        <%= form.select :measurement_unit, options_for_select(['Miligrams', 'Grams', 'Kilograms', 'Liters']), {}, { class: "form-input", placeholder: "Select a Measurement Unit" } %>
+      </div>
+      <div class="field">
+        <%= form.number_field :price, placeholder: "Price", class: "form-input" %>
+      </div>
+      <%= form.submit 'Add Food', class: "submit-btn" %>
+    <% end %>
   </div>
-  <div class="field">
-    <%= form.label :measurement_unit %>
-    <%= form.select :measurement_unit, options_for_select(['Miligrams', 'Grams', 'Kilograms', 'Liters']), {}, { placeholder: "Select a Measurement Unit" } %>
-  </div>
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.number_field :price, placeholder: "Price" %>
-  </div>
-  <%= form.submit 'Add Food', class: "submit-btn" %>
-  <% puts logger.debug %>
-<% end %>
+</div>
