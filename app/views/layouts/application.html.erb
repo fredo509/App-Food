@@ -21,16 +21,15 @@
     </div>
     <div class="layouts-application-navbar">
       <% if user_signed_in? %>
-        <%= link_to current_user.name, foods_path %>
+        <%= link_to current_user.name, edit_user_registration_path(current_user.id), class:"navbar-title" %>
         <div class="layouts-application-config">
-          <%= link_to 'config', edit_user_registration_path, class: 'shared-bar-btn', data: { turbo: false } %>
           <%= link_to 'Your recipes', user_recipes_path(current_user.id) %>
           <%= link_to 'Public recipes', public_recipes_path  %>
           <%= link_to 'My Inventories', user_inventories_path(current_user.id) %>
           <%= button_to "Sign out", destroy_user_session_path, :method => :get, class: "btn" %>
         </div>
       <% else  %>
-        <%= link_to "Home", foods_path %>
+        <%= link_to "Home", foods_path, class:"navbar-title"  %>
         <div class="layouts-application-config">
           <%= link_to "Recipes", public_recipes_path %>
           <%= link_to "Sign in", new_user_session_path, class: "btn" %>
@@ -38,6 +37,9 @@
         </div>
       <% end %>
     </div>
+    
+    <%= turbo_frame_tag "shopping_modal" %>
+
     <%= yield %>
   </body>
 </html>

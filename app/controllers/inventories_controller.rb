@@ -1,12 +1,13 @@
 class InventoriesController < ApplicationController
   def index
     @user = User.find(params[:user_id])
-    @inventories = Inventory.where(user_id: current_user.id)
+    @inventories = Inventory.includes(:user).where(user_id: current_user.id).page(params[:page]).per(3)
   end
 
   def show
     @inventory = Inventory.find(params[:id])
-    @inventory_food_inventories = @inventory.food_inventories
+    @inventory_food_inventories = @inventory.food_inventories.includes(:food).page(params[:page]).per(3)
+    @food = Food.all
   end
 
   def new

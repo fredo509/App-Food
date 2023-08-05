@@ -1,20 +1,26 @@
 <% if user_signed_in? %>
-  <%= form_with(model: [current_user, RecipeFood.new], url: user_recipe_recipe_food_index_path(current_user.id), local: true) do |form| %>
-    <h1 class="comments-form-title">New Ingredient</h1>
-    <div class="field">
-      <div>
-        <%= form.label :quantity %>
-        <%= form.text_field :quantity, rows: 4, placeholder: "quantity" %>
-      </div>
-      <div>
-        <%= form.hidden_field :recipe_id, value: @recipe.id %> <!-- Add this line to set recipe_id -->
+  <div class="user-form">
+    <div class="user-form-cont">
+      <h2 class="user-form-title">New Ingredient</h2>
 
-        <%= form.label :food_id %>
-<%= form.collection_select(:food_id, Food.all, :id, :name) %>
+      <%= form_with(model: [current_user, RecipeFood.new], url: user_recipe_recipe_food_index_path(current_user.id), local: true) do |form| %>
+      <style>  body > div.user-form > div > form{ width: 100%} </style>
+        <div class="field">
+          <div>
+            <%= form.text_field :quantity, rows: 4, placeholder: "Quantity", class: "form-input", required: true %>
+          </div>
+          <div>
+            <%= form.hidden_field :recipe_id, value: @recipe.id %>
 
-      </div>
+            <%= form.collection_select(:food_id, Food.all, :id, :name, { include_blank: "Select Food" }, { class: "form-input", required: true }) %>
+          </div>
+        </div>
+        <%= form.submit 'Add Ingredient', class: "submit-btn" %>
+
+        <div class="shared-links">
+        <%= link_to "Go back", :back, class: 'shared-link go-back' %>
+        </div>
+      <% end %>
     </div>
-    <%= form.submit 'Add Ingredient', class: "submit-btn" %>
-    <%= link_to "go back", :back, class: 'shared-link go-back' %>
-  <% end %>
+  </div>
 <% end %>

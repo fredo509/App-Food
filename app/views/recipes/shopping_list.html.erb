@@ -1,0 +1,129 @@
+<%= turbo_frame_tag "shopping_modal" do %>
+  <div class="shopping_modal_cont">
+    <div class="shopping_modal">
+      <% if @inventory.find_by(id: params[:inventory_id]).present? %>
+        <h1 class="form-title">Shopping List</h1>
+      <% else %>
+        <h1 class="form-title">Generating Shopping List</h1>
+        <style>
+          .form-btn{ align-self: center !important; transform: translateY(6rem);}
+        </style>
+      <% end %>
+      <%= form_with url: user_recipe_shopping_list_path, class: 'forms', method: :get do |form| %>
+        <%= form.hidden_field :recipe_id, value: params[:recipe_id] %>
+        <div class="field">
+          <h3 class="shopping-sub"><%= form.label :inventory_id, 'Choose an inventory to use:' %></h3>
+        </div>
+        <style> .shopping-sub {text-align: center} </style>
+        <div class="form-actions">
+          <div class="field">
+            <%= form.collection_select(:inventory_id, @inventory, :id, :name, { prompt: true }, { required: true }) %>
+          </div class="field">
+          <div>
+            <%= form.submit 'Generate', class: 'btn', data: { turbo: false } %>
+          </div class="field">
+        </div>
+      <% end %>
+      <% if @inventory.present? %>
+        <% @selected_inventory = @inventory.find_by(id: params[:inventory_id]) %>
+        <!-- Logic -->
+        <% if @selected_inventory %>
+          <% @inventory_food = @selected_inventory.food_inventories.includes([:food]).map(&:food).compact.sort_by(&:id) %>
+          <% @recipe_food = @recipe.recipe_food.includes([:food]).map(&:food).compact.sort_by(&:id) %>
+          <% common_length = [@inventory_food.length, @recipe_food.length].min %>
+          <% difference = @inventory_food.zip(@recipe_food).count do |a, b| a&.id != nil && b&.id != nil && a.id != b.id end %>
+          <!-- Logic -->
+          <div class="shopping-char-cont">
+
+          <div class="shopping-char">
+            <p>Amount of food to buy: <%= difference %></p>
+            <p>
+              <%
+              total_value = 0 
+              food_prices = Food.where(id: @recipe.recipe_food.map { |food| food.food_id }).map { |food| food.price }
+              food_quantities = @recipe.recipe_food.map { |food| food.quantity }
+              food_prices.each_with_index do |price, index|
+              quantity = food_quantities[index]
+              product = price * quantity
+              total_value += product 
+              end
+            %>
+              <%= "Total value of food needed: #{total_value}" %>
+            </p>
+          
+
+          </div>  
+   
+          <div class="shopping-char">
+          <p>Inventory: <%= link_to @selected_inventory.name, user_inventory_path(current_user.id, @selected_inventory.id), data: {turbo: false}, class:"form-external-links" %></p>
+            <p>Recipe: <%= link_to @recipe.name, user_recipe_path(current_user.id, @recipe.id), data: {turbo: false}, class:"form-external-links" %></p>
+          </div>
+       </div>
+
+          <style>
+            .shopping_modal_cont {background: transparent; backdrop-filter: blur(0px)}
+            .shopping_modal { max-width: 40rem; height: 100%; background-color: transparent; border: 0; justify-content: center; align-items: center; }
+            .form { display: none; }
+          </style>
+          <!-- Logic -->
+          <% @recipe_food_id = @recipe.recipe_food.map {|recipe_food| recipe_food.food_id} %>
+          <% @recipe_prices = @recipe.recipe_food.map {|recipe_food| recipe_food.food.price} %>
+          <% @recipe_quantities = @recipe.recipe_food.map {|recipe_food| recipe_food.quantity} %>
+          <% @recipe_total = @recipe_prices.zip(@recipe_quantities).map {|a, b| a * b} %>
+          <% @inventory_food_id = @selected_inventory.food_inventories.map {|food_inventory| food_inventory.food_id} %>
+          <% @inventory_prices = @selected_inventory.food_inventories.map {|food_inventory| food_inventory.food.price} %>
+          <% @inventory_quantities = @selected_inventory.food_inventories.map {|food_inventory| food_inventory.quantity} %>
+          <% @inventory_total = @inventory_prices.zip(@inventory_quantities).map {|a, b| a * b} %>
+          <!-- Logic -->
+          <table>
+            <tr>
+              <th>Food</th>
+              <th>Missing Amount</th>
+              <th>Total</th>
+            </tr>
+            <!-- Logic -->
+            <% total_difference = 0 %>
+            <% @recipe_food.each_with_index do |recipe_item, index| %>
+              <% inventory_item = @selected_inventory.food_inventories.find { |item| item.food_id == recipe_item.id } %>
+              <% recipe_price = @recipe_prices[index] * @recipe_quantities[index] %>
+              <% if inventory_item.nil? %>
+                <% inventory_price = 0 %>
+                <% quantity = @recipe_quantities[index] %>
+                <% difference = recipe_price %>
+              <% else %>
+                <% inventory_price = @inventory_prices[index] * inventory_item.quantity %>
+                <% quantity = @recipe_quantities[index] - inventory_item.quantity %>
+                <% difference = recipe_price - inventory_price %>
+              <% end %>
+              <% quantity = [quantity, 0].max %>
+              <% difference = [difference, 0].max %>
+              <% total_difference += difference %>
+              <!-- Logic -->
+              <tr>
+                <td><%= recipe_item.name %></td>
+                <td><%= "#{quantity} #{recipe_item.measurement_unit}" %></td>
+                <td><%= "$#{difference}" %></td>
+              </tr>
+            <% end %>
+            <tr>
+              <td colspan="2"><strong>Total Cost</strong></td>
+              <td><strong><%= "$#{total_difference}" %></strong></td>
+            </tr>
+          </table>
+          <style>
+            table { border-collapse: collapse; width: 100%; margin-bottom: 20px }
+            th, td { border: 1px solid #dddddd; text-align: left; padding: 8px; background-color: #f2f2f2 }
+            th { background-color: #f2f2f2 }
+            tr:nth-child(even) { background-color: #f2f2f2 }
+            td:hover { background-color: #ffffff }
+          </style>
+          <!-- table with the food name, quantity and price -->
+        <% else %>
+          <%= link_to 'Cancel',  user_recipes_path(current_user.id), data: {controller: "shopping_modal", action: "close_modal" }, class: "btn form-btn" %>
+        <% end %>
+      <% else %>
+        <p>No inventories available.</p>
+      <% end %>
+    </div>
+  </div>
+<% end %>

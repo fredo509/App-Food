@@ -1,40 +1,28 @@
-.foods-index-cont {
+.inventories-show-cont {
   height: 100%;
-  display: grid;
-  width: 100%;
-  max-width: 50rem;
+  display: flex;
   flex-direction: column;
-  align-content: center;
   justify-content: center;
   align-items: center;
-  grid-template-columns: repeat(1, 1fr);
-  grid-template-rows: 0.2fr 0.5fr 0.2fr;
-  margin: 0 auto;
 }
 
-.foods-index-create {
-  background-color: rgb(248, 248, 248);
-  padding: 0.25rem 0.5rem;
-  transition: all 0.2s ease-in-out;
-  border: 1px solid black;
-  border-radius: 5px;
-}
-
-.foods-index-create:hover {
-  cursor: pointer;
-  filter: invert(1);
-}
-
-.foods-index-options {
+.inventories-show-main {
+  width: 100%;
+  max-width: 35rem;
   display: flex;
-  gap: 0.25rem;
-  width: fit-content;
-  justify-self: flex-end;
-  align-self: flex-end;
-  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.foods-index {
+.inventories-show-actions {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  padding: 0.5rem 0;
+}
+
+.inventories-show {
   background-color: grey;
   width: 100%;
   padding: 1rem;
@@ -44,43 +32,42 @@
   flex-direction: column;
 }
 
-.foods-index-info {
+.inventories-show-info {
   display: grid;
   grid-auto-rows: auto;
   align-items: center;
   justify-content: center;
   padding: 0.5rem;
+  grid-template-columns: repeat(3, 1fr);
 }
 
-.foods-index-info:nth-child(odd) {
+.inventories-show-info:nth-child(odd) {
   background-color: rgb(187, 187, 187);
 }
 
-.foods-index-info:nth-child(even) {
+.inventories-show-info:nth-child(even) {
   background-color: rgb(230, 230, 230);
 }
 
-.foods-title,
-.foods-name,
-.foods-measurement,
-.foods-price,
-.foods-delete {
+.inventories-title,
+.inventories-name,
+.inventories-quantity {
   text-align: center;
 }
 
-.foods-delete {
+.inventories-btn {
   border: 0;
   padding: 0.25rem;
   transition: 0.25s ease-in-out;
   background-color: rgba(0, 0, 0, 0.06);
 }
 
-.foods-delete:hover {
+.inventories-btn:hover {
   cursor: pointer;
   color: rgb(255, 0, 0);
 }
 
-.foods-delete::before {
+.inventories-btn::before {
   content: "";
   position: absolute;
   width: 2.5rem;
@@ -91,15 +78,7 @@
   transition: 0.25s ease-in-out;
 }
 
-.foods-delete:hover::before {
+.inventories-btn:hover::before {
   transform: translateY(0.9rem) translateX(-1.3px) scaleX(1);
   background-color: rgb(255, 0, 0);
-}
-
-.pagination {
-  background-color: rgb(255, 255, 255);
-  filter: invert(1);
-  padding: 0.5rem;
-  text-align: center;
-  z-index: 0;
 }
