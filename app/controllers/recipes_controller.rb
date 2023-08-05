@@ -1,15 +1,15 @@
 class RecipesController < ApplicationController
   def index
     @recipes = Recipe.all
-    @my_recipes = Recipe.where(user_id: current_user.id)
+    @my_recipes = Recipe.where(user_id: current_user.id).page(params[:page]).per(3)
     @recipe_food = RecipeFood.all
     @this_recipe = RecipeFood.where(recipe_id: @recipe)
     @food = Food.all
   end
 
   def show
-    @recipes = Recipe.find(params[:id])
-    @recipe_food = RecipeFood.all
+    @recipe = Recipe.find(params[:id])
+    @recipe_food = @recipe.recipe_food.page(params[:page]).per(3)
     @actual_user = current_user
     @food = Food.all
     @recipe_id = @recipe.id
@@ -41,8 +41,17 @@ class RecipesController < ApplicationController
     end
   end
 
+  def update
+    @recipe = Recipe.find(params[:id])
+    if @recipe.update(recipe_params)
+      redirect_to @recipe, notice: 'Recipe was successfully updated.'
+    else
+      render :show
+    end
+  end
+
   def public_recipes
-    @public_recipes = Recipe.where(public: true)
+    @public_recipes = Recipe.where(public: true).page(params[:page]).per(3)
   end
 
   def shopping_list(inventory_id = nil)

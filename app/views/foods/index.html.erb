@@ -31,6 +31,7 @@
           </style>
         <% end %>
       </div>
+      
       <% @foods.map do |food| %>
         <div class="foods-index-info">
           <p class="foods-name"> <%= food.name %> </p>
@@ -42,5 +43,6 @@
         </div>
       <% end  %>
     <% end %>
+      <%= paginate @foods, class: 'pagination' %>
   </div>
 </div>

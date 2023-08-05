@@ -5,6 +5,12 @@ export default class extends Controller {
   connect() {
   }
   close(e) {
-    e.preventDefault()
+    e.preventDefault();
+
+    const modal = document.querySelector('.shopping-modal');
+    modal.innerHTML = ''
+
+    modal.removeAttribute('src');
+    modal.removeAttribute('complete');
   }
 }
