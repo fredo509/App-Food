@@ -85,6 +85,4 @@ test:
 #
 production:
   <<: *default
-  database: app_food_prod
-  username: postgres
-  password: 1234
+  url: <%= ENV["DATABASE_URL"] %>
