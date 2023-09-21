@@ -1,5 +1,5 @@
 databases:
-  - name: app-food
+  - name: postgres
     plan: free
     ipAllowList: []
 
@@ -15,7 +15,7 @@ services:
         sync: false
       - key: DATABASE_URL
         fromDatabase:
-          name: app-food
+          name: postgres
           property: connectionString
   - type: redis
     name: redis
