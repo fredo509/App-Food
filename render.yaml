@@ -1,5 +1,5 @@
 databases:
-  - name: app-food
+  - name: postgres
     plan: free
     ipAllowList: []
 
